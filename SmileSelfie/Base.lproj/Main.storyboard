@@ -137,6 +137,7 @@
                         <viewLayoutGuide key="safeArea" id="3Ca-Ey-jD3"/>
                     </view>
                     <connections>
+                        <outlet property="collectionButton" destination="nVk-T9-euo" id="d15-jw-24R"/>
                         <outlet property="faceView" destination="JIP-gF-PTx" id="Hoz-sU-bw1"/>
                     </connections>
                 </viewController>
