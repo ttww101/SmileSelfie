@@ -14,10 +14,9 @@ class SmileSelfieViewController: UIViewController {
     
     @IBOutlet var faceView: FaceView!
     
-    let detectFaceSession = AVCaptureSession()
+    let captureSession = AVCaptureSession()
     var sequenceHandler = VNSequenceRequestHandler()
     var previewLayer: AVCaptureVideoPreviewLayer!
-    
     let dataOutputQueue = DispatchQueue(
         label: "video data queue",
         qos: .userInitiated,
@@ -41,20 +40,137 @@ class SmileSelfieViewController: UIViewController {
         }
     }
     
+    //Button control feature
+    var isLive: Bool = false
+    var isFlash: Bool = false
+    var isDrawFaceOutLine: Bool = false
+    var isAuto: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setup()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        previewLayer.frame = view.bounds
+        print(previewLayer.frame)
+    }
+    
     //MARK: Private
     private func setup() {
         configureCaptureSession()
-        detectFaceSession.startRunning()
+        captureSession.startRunning()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+    }
+    
+    //MARK: IBAction
+    @IBAction func liveButtonDidTouchupInside(_ sender: Any) {
+        if (self.cameraOutput.cameraOutput.isLivePhotoCaptureSupported) {
+            self.captureSession.beginConfiguration()
+            self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled.toggle()
+            self.captureSession.commitConfiguration()
+        } else {
+            print("Live Photo Not Supported")
+        }
+    }
+    @IBAction func flashButtonDidTouchupInside(_ sender: Any) {
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video)
+            else {return}
+        
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                if device.torchMode == AVCaptureDevice.TorchMode.on {
+                    device.torchMode = AVCaptureDevice.TorchMode.off
+                    //AVCaptureDevice.TorchModeAVCaptureDevice.TorchMode.off
+                } else {
+                    do {
+                        try device.setTorchModeOn(level: 1.0)
+                    } catch {
+                        print(error)
+                    }
+                }
+                device.unlockForConfiguration()
+            } catch {
+                print(error)
+            }
+        }
+    }
+    @IBAction func modeButtonDidTouchupInside(_ sender: Any) {
+        self.isDrawFaceOutLine.toggle()
+    }
+    @IBAction func collentionButtonDidTouchupInside(_ sender: Any) {
+    }
+    @IBAction func autoButtonDidTouchupInside(_ sender: Any) {
+        self.isAuto.toggle()
+    }
+    @IBAction func countDownButtonDidTouchupInside(_ sender: Any) {
+    }
+    @IBAction func camChangeButtonDidTouchUpInside(_ sender: Any) {
+        
+        let session = self.captureSession
+        session.beginConfiguration()
+        
+        //Remove existing input
+        guard let currentCameraInput: AVCaptureInput = session.inputs.first else {
+            return
+        }
+        
+        session.removeInput(currentCameraInput)
+        
+        //Get new input
+        var newCamera: AVCaptureDevice! = nil
+        if let input = currentCameraInput as? AVCaptureDeviceInput {
+            if (input.device.position == .back) {
+                newCamera = cameraWithPosition(position: .front)
+            } else {
+                newCamera = cameraWithPosition(position: .back)
+            }
+        }
+        
+        //Add input to session
+        var err: NSError?
+        var newVideoInput: AVCaptureDeviceInput!
+        do {
+            newVideoInput = try AVCaptureDeviceInput(device: newCamera)
+        } catch let err1 as NSError {
+            err = err1
+            newVideoInput = nil
+        }
+        
+        if newVideoInput == nil || err != nil {
+            print("Error creating capture device input: \(String(describing: err?.localizedDescription))")
+        } else {
+            session.addInput(newVideoInput)
+        }
+        
+        //Commit all the configuration changes at once
+        //Remove existing input
+        for output in session.outputs {
+            if output is AVCaptureVideoDataOutput {
+                session.removeOutput(output)
+                self.addFaceDetectOutput()
+            }
+        }
+        
+        session.commitConfiguration()
+    }
+    
+    func cameraWithPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
+        for device in discoverySession.devices {
+            if device.position == position {
+                return device
+            }
+        }
+        
+        return nil
     }
 
 }
@@ -65,16 +181,16 @@ class SmileSelfieViewController: UIViewController {
 extension SmileSelfieViewController {
     func configureCaptureSession() {
         // Define the capture device we want to use
-        guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera,
-                                                   for: .video,
-                                                   position: .front) else {
-                                                    fatalError("No front video camera available")
+        guard
+            let camera = cameraWithPosition(position: .front)
+            else {
+                fatalError("No front video camera available")
         }
         
         // Connect the camera to the capture session input
         do {
             let cameraInput = try AVCaptureDeviceInput(device: camera)
-            detectFaceSession.addInput(cameraInput)
+            captureSession.addInput(cameraInput)
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -84,22 +200,21 @@ extension SmileSelfieViewController {
         self.addCameraOutput()
         
         // Configure the preview layer
-        previewLayer = AVCaptureVideoPreviewLayer(session: detectFaceSession)
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = .resizeAspectFill
         previewLayer.frame = view.bounds
-        print(view.bounds)
         view.layer.insertSublayer(previewLayer, at: 0)
     }
     
     func addFaceDetectOutput() {
         // Create the video data output
         let videoOutput = AVCaptureVideoDataOutput()
-        //    videoOutput.alwaysDiscardsLateVideoFrames = true
+        videoOutput.alwaysDiscardsLateVideoFrames = true
         videoOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
         
         // Add the video output to the capture session
-        detectFaceSession.addOutput(videoOutput)
+        captureSession.addOutput(videoOutput)
         
         let videoConnection = videoOutput.connection(with: .video)
         videoConnection?.videoOrientation = .portrait
@@ -107,12 +222,13 @@ extension SmileSelfieViewController {
     
     func addCameraOutput() {
         self.cameraOutput.cameraOutput.isHighResolutionCaptureEnabled = true
-        self.detectFaceSession.addOutput(self.cameraOutput.cameraOutput)
+        self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled = false
+        self.captureSession.addOutput(self.cameraOutput.cameraOutput)
     }
 }
 
 
-// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate methods
+// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
 
 extension SmileSelfieViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -149,8 +265,9 @@ extension SmileSelfieViewController: AVCaptureVideoDataOutputSampleBufferDelegat
             for faceFeature in features {
                 if let faceFeature = faceFeature as? CIFaceFeature {
                     if faceFeature.hasSmile {
-                        //smile
-                        self.saveToCamera()
+                        if isAuto {
+                            self.saveToCamera()
+                        }
                     } else {
                         self.smileImage = nil
                     }
@@ -162,6 +279,8 @@ extension SmileSelfieViewController: AVCaptureVideoDataOutputSampleBufferDelegat
     
     func detectedFace(request: VNRequest, error: Error?) {
         
+        if (!isDrawFaceOutLine) { faceView.clear(); return }
+        
         guard
             let results = request.results as? [VNFaceObservation],
             let result = results.first
@@ -169,8 +288,7 @@ extension SmileSelfieViewController: AVCaptureVideoDataOutputSampleBufferDelegat
                 faceView.clear()
                 return
         }
-        
-        updateFaceView(for: result)
+        drawFaceDetectOutLine(for: result)
     }
     
     func convert(rect: CGRect) -> CGRect {
@@ -200,15 +318,17 @@ extension SmileSelfieViewController: AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     //face
-    func updateFaceView(for result: VNFaceObservation) {
+    func drawFaceDetectOutLine(for result: VNFaceObservation) {
         defer {
             DispatchQueue.main.async {
                 self.faceView.setNeedsDisplay()
             }
         }
         
+        //red box
         let box = result.boundingBox
-        faceView.boundingBox = convert(rect: box)
+        //TODO: bug when changing session output
+//        faceView.boundingBox = convert(rect: box)
         
         guard let landmarks = result.landmarks else {
             return
@@ -216,49 +336,49 @@ extension SmileSelfieViewController: AVCaptureVideoDataOutputSampleBufferDelegat
         
         if let leftEye = landmark(
             points: landmarks.leftEye?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.leftEye = leftEye
         }
         
         if let rightEye = landmark(
             points: landmarks.rightEye?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.rightEye = rightEye
         }
         
         if let leftEyebrow = landmark(
             points: landmarks.leftEyebrow?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.leftEyebrow = leftEyebrow
         }
         
         if let rightEyebrow = landmark(
             points: landmarks.rightEyebrow?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.rightEyebrow = rightEyebrow
         }
         
         if let nose = landmark(
             points: landmarks.nose?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.nose = nose
         }
         
         if let outerLips = landmark(
             points: landmarks.outerLips?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.outerLips = outerLips
         }
         
         if let innerLips = landmark(
             points: landmarks.innerLips?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.innerLips = innerLips
         }
         
         if let faceContour = landmark(
             points: landmarks.faceContour?.normalizedPoints,
-            to: result.boundingBox) {
+            to: box) {
             faceView.faceContour = faceContour
         }
     }

@@ -49,12 +49,24 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIP-gF-PTx" customClass="FaceView" customModule="SmileSelfie" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEd-xY-upR">
+                                        <rect key="frame" x="284" y="579" width="75" height="30"/>
+                                        <state key="normal" title="Front/Back"/>
+                                        <connections>
+                                            <action selector="camChangeButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="kWP-5x-EFk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df0-Ra-msG">
                                 <rect key="frame" x="320" y="20" width="39" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Mode"/>
+                                <connections>
+                                    <action selector="modeButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="hLc-QV-sHP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Kr-rS-mgg">
                                 <rect key="frame" x="16" y="20" width="43" height="30"/>
@@ -63,27 +75,42 @@
                                 <state key="selected" title="Live">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="liveButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="cA6-87-8aM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kO4-Xm-0jz">
                                 <rect key="frame" x="161.5" y="20" width="52" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="N Flash"/>
                                 <state key="selected" title="Flash"/>
+                                <connections>
+                                    <action selector="flashButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Lo1-pF-2hk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVk-T9-euo">
                                 <rect key="frame" x="16" y="617" width="69" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Collection"/>
+                                <connections>
+                                    <action selector="collentionButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="fed-Lw-5f5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s1-2R-AhN">
                                 <rect key="frame" x="144" y="617" width="87" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Auto/Manual"/>
+                                <connections>
+                                    <action selector="autoButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Kzj-dF-p4b"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5i-jM-ojy">
                                 <rect key="frame" x="321" y="617" width="38" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="3 sec"/>
+                                <connections>
+                                    <action selector="countDownButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="47U-PN-pEO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,7 +123,9 @@
                             <constraint firstItem="df0-Ra-msG" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="OHA-t5-NkZ"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="nVk-T9-euo" secondAttribute="bottom" constant="20" id="PhO-hE-PSF"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" id="QH3-Wj-L21"/>
+                            <constraint firstItem="WEd-xY-upR" firstAttribute="trailing" secondItem="X5i-jM-ojy" secondAttribute="trailing" id="aGz-IE-9Gc"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="bWz-15-q9G"/>
+                            <constraint firstItem="X5i-jM-ojy" firstAttribute="top" secondItem="WEd-xY-upR" secondAttribute="bottom" constant="8" id="gNO-l7-mGk"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="lHB-8x-qbi"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="top" secondItem="JoO-wr-gb8" secondAttribute="top" id="o39-xV-TQv"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="2s1-2R-AhN" secondAttribute="bottom" constant="20" id="pZ4-Ki-NaY"/>
