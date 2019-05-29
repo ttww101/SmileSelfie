@@ -13,6 +13,8 @@ class CameraCaptureOutput: NSObject, AVCapturePhotoCaptureDelegate {
     
     let cameraOutput = AVCapturePhotoOutput()
     
+    var flashMode: AVCaptureDevice.FlashMode = .off
+    
     var captureCompletion: ((UIImage?) -> ())? = nil
     
     func capturePhoto() {
@@ -22,9 +24,9 @@ class CameraCaptureOutput: NSObject, AVCapturePhotoCaptureDelegate {
         let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
                              kCVPixelBufferWidthKey as String: 160,
                              kCVPixelBufferHeightKey as String: 160]
+        settings.flashMode = flashMode
         settings.previewPhotoFormat = previewFormat
         self.cameraOutput.capturePhoto(with: settings, delegate: self)
-        
     }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {

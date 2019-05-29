@@ -51,19 +51,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEd-xY-upR">
-                                        <rect key="frame" x="284" y="579" width="75" height="30"/>
-                                        <state key="normal" title="Front/Back"/>
+                                        <rect key="frame" x="323" y="579" width="36" height="30"/>
+                                        <state key="normal" title="Front"/>
+                                        <state key="selected" title="Back"/>
                                         <connections>
                                             <action selector="camChangeButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="kWP-5x-EFk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgG-ac-Sp2">
+                                        <rect key="frame" x="144.5" y="579" width="86" height="30"/>
+                                        <state key="normal" title="Manual Shot"/>
+                                        <connections>
+                                            <action selector="manualShotButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="cuX-D5-yNM"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df0-Ra-msG">
-                                <rect key="frame" x="320" y="20" width="39" height="30"/>
+                                <rect key="frame" x="309" y="20" width="50" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Mode"/>
+                                <state key="normal" title="Normal"/>
+                                <state key="selected" title="Outline"/>
                                 <connections>
                                     <action selector="modeButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="hLc-QV-sHP"/>
                                 </connections>
@@ -80,10 +89,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kO4-Xm-0jz">
-                                <rect key="frame" x="161.5" y="20" width="52" height="30"/>
+                                <rect key="frame" x="156.5" y="20" width="62" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="N Flash"/>
-                                <state key="selected" title="Flash"/>
+                                <state key="normal" title="Flash Off"/>
+                                <state key="selected" title="Flash On"/>
                                 <connections>
                                     <action selector="flashButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Lo1-pF-2hk"/>
                                 </connections>
@@ -97,9 +106,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s1-2R-AhN">
-                                <rect key="frame" x="144" y="617" width="87" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Auto/Manual"/>
+                                <rect key="frame" x="171.5" y="617" width="32" height="30"/>
+                                <state key="normal" title="Auto"/>
+                                <state key="selected" title="Manual"/>
                                 <connections>
                                     <action selector="autoButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Kzj-dF-p4b"/>
                                 </connections>
@@ -123,12 +132,14 @@
                             <constraint firstItem="df0-Ra-msG" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="OHA-t5-NkZ"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="nVk-T9-euo" secondAttribute="bottom" constant="20" id="PhO-hE-PSF"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" id="QH3-Wj-L21"/>
+                            <constraint firstItem="2s1-2R-AhN" firstAttribute="top" secondItem="HgG-ac-Sp2" secondAttribute="bottom" constant="8" id="TtR-lm-gE1"/>
                             <constraint firstItem="WEd-xY-upR" firstAttribute="trailing" secondItem="X5i-jM-ojy" secondAttribute="trailing" id="aGz-IE-9Gc"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="bWz-15-q9G"/>
                             <constraint firstItem="X5i-jM-ojy" firstAttribute="top" secondItem="WEd-xY-upR" secondAttribute="bottom" constant="8" id="gNO-l7-mGk"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="lHB-8x-qbi"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="top" secondItem="JoO-wr-gb8" secondAttribute="top" id="o39-xV-TQv"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="2s1-2R-AhN" secondAttribute="bottom" constant="20" id="pZ4-Ki-NaY"/>
+                            <constraint firstItem="HgG-ac-Sp2" firstAttribute="centerX" secondItem="2s1-2R-AhN" secondAttribute="centerX" id="tDO-Z3-8Bx"/>
                             <constraint firstItem="kO4-Xm-0jz" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="tia-Y5-gVb"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="X5i-jM-ojy" secondAttribute="bottom" constant="20" id="tx8-QS-MRK"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="X5i-jM-ojy" secondAttribute="trailing" constant="16" id="u7q-Kd-K9f"/>
@@ -137,8 +148,13 @@
                         <viewLayoutGuide key="safeArea" id="3Ca-Ey-jD3"/>
                     </view>
                     <connections>
+                        <outlet property="autoButton" destination="2s1-2R-AhN" id="Axu-n1-W7u"/>
+                        <outlet property="camChangeButton" destination="WEd-xY-upR" id="awd-2L-JZ3"/>
                         <outlet property="collectionButton" destination="nVk-T9-euo" id="d15-jw-24R"/>
                         <outlet property="faceView" destination="JIP-gF-PTx" id="Hoz-sU-bw1"/>
+                        <outlet property="flashButton" destination="kO4-Xm-0jz" id="ch3-xT-X2S"/>
+                        <outlet property="liveButton" destination="2Kr-rS-mgg" id="5qh-wo-TXE"/>
+                        <outlet property="modeButton" destination="df0-Ra-msG" id="CfI-oa-5qf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvf-2H-3UU" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,11 @@ class SmileSelfieViewController: UIViewController {
     //UI
     @IBOutlet var faceView: FaceView!
     @IBOutlet var collectionButton: UIButton!
+    @IBOutlet var autoButton: UIButton!
+    @IBOutlet var liveButton: UIButton!
+    @IBOutlet var flashButton: UIButton!
+    @IBOutlet var modeButton: UIButton!
+    @IBOutlet var camChangeButton: UIButton!
     
     //capture session
     let captureSession = AVCaptureSession()
@@ -28,26 +33,24 @@ class SmileSelfieViewController: UIViewController {
     let cameraOutput = CameraCaptureOutput()
     
     //smile
-    var completionImageView = UIImageView() {
-        didSet {
-            
-        }
-    }
     var smileImage: UIImage? {
         didSet {
-            if let image = smileImage {
-                self.completionImageView.image = image
-                self.view.addSubview(completionImageView)
-                completionImageView.frame = self.view.frame
-                UIView.animate(withDuration: 1, delay: 0.3, options: .curveEaseOut, animations: {
-                    self.completionImageView.frame = CGRect.zero
-                    self.completionImageView.center = self.collectionButton.center
-                }) { (completion) in }
-            } else {
-                DispatchQueue.main.async {
-                    self.completionImageView.image = nil
-                    self.completionImageView.removeFromSuperview()
-                }
+            guard
+                let image = smileImage
+            else
+                { return }
+            
+            //image animation
+            let completionImageView = UIImageView()
+            completionImageView.image = image
+            self.view.addSubview(completionImageView)
+            completionImageView.frame = self.view.frame
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
+                completionImageView.frame = CGRect.zero
+                completionImageView.center = self.collectionButton.center
+            }) { (completion) in
+                completionImageView.image = nil
+                completionImageView.removeFromSuperview()
             }
         }
     }
@@ -56,7 +59,7 @@ class SmileSelfieViewController: UIViewController {
             self.configAutoSavingPhoto(with: isSmiling)
         }
     }
-    var isSavingSmilePhoto: Bool = false
+    var isAutoSavingPhoto: Bool = false
     var smileTimeInterval: TimeInterval = 3
     
     //button control feature
@@ -74,7 +77,6 @@ class SmileSelfieViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         previewLayer.frame = view.bounds
-        print(previewLayer.frame)
     }
     
     private func setup() {
@@ -88,6 +90,7 @@ class SmileSelfieViewController: UIViewController {
     
     //MARK: IBActions
     @IBAction func liveButtonDidTouchupInside(_ sender: Any) {
+        self.liveButton.isSelected.toggle()
         if (self.cameraOutput.cameraOutput.isLivePhotoCaptureSupported) {
             self.captureSession.beginConfiguration()
             self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled.toggle()
@@ -97,41 +100,37 @@ class SmileSelfieViewController: UIViewController {
         }
     }
     
-    @IBAction func flashButtonDidTouchupInside(_ sender: Any) {
-        guard let device = AVCaptureDevice.default(for: AVMediaType.video)
-            else {return}
-        
-        if device.hasTorch {
-            do {
-                try device.lockForConfiguration()
-                if device.torchMode == AVCaptureDevice.TorchMode.on {
-                    device.torchMode = AVCaptureDevice.TorchMode.off
-                    //AVCaptureDevice.TorchModeAVCaptureDevice.TorchMode.off
-                } else {
-                    do {
-                        try device.setTorchModeOn(level: 1.0)
-                    } catch {
-                        print(error)
-                    }
-                }
-                device.unlockForConfiguration()
-            } catch {
-                print(error)
-            }
+    @IBAction func flashButtonDidTouchupInside(_ sender: UIButton) {
+        self.flashButton.isSelected.toggle()
+        if sender.isSelected {
+            self.cameraOutput.flashMode = .on
+        } else {
+            self.cameraOutput.flashMode = .off
         }
     }
+    
     @IBAction func modeButtonDidTouchupInside(_ sender: Any) {
         self.isDrawFaceOutLine.toggle()
+        self.modeButton.isSelected.toggle()
     }
+    
     @IBAction func collentionButtonDidTouchupInside(_ sender: Any) {
     }
+    
     @IBAction func autoButtonDidTouchupInside(_ sender: Any) {
         self.isAuto.toggle()
+        self.autoButton.isSelected.toggle()
     }
+    
+    @IBAction func manualShotButtonDidTouchUpInside(_ sender: UIButton) {
+        self.saveToCamera()
+    }
+    
     @IBAction func countDownButtonDidTouchupInside(_ sender: Any) {
     }
     
     @IBAction func camChangeButtonDidTouchUpInside(_ sender: Any) {
+        self.camChangeButton.isSelected.toggle()
         self.changeCamera()
     }
 }
@@ -348,30 +347,28 @@ extension SmileSelfieViewController {
     
     private func configAutoSavingPhoto(with isSmiling: Bool) {
         if !isAuto { return }
-        if isSmiling {
-            //auto saving
-            if (self.isSavingSmilePhoto == false) {
-                self.isSavingSmilePhoto = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + smileTimeInterval, execute: {
-                    if !self.isSmiling || !self.isAuto {
-                        self.isSavingSmilePhoto = false
-                        return
-                    }
-                    self.saveToCamera()
-                })
-            }
+        if !isSmiling { return }
+        
+        //auto saving
+        if (self.isAutoSavingPhoto == false) {
+            self.isAutoSavingPhoto = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + smileTimeInterval, execute: {
+                if !self.isSmiling || !self.isAuto {
+                    self.isAutoSavingPhoto = false
+                    return
+                }
+                self.saveToCamera()
+                self.isAutoSavingPhoto = false
+            })
         }
     }
     
     private func saveToCamera() {
-        DispatchQueue.global(qos: .userInteractive).async {
-            DispatchQueue.main.async {
-                self.cameraOutput.captureCompletion = { (image) in
-                    self.smileImage = image
-                    self.isSavingSmilePhoto = false
-                }
-                self.cameraOutput.capturePhoto()
+        DispatchQueue.main.async {
+            self.cameraOutput.captureCompletion = { (image) in
+                self.smileImage = image
             }
+            self.cameraOutput.capturePhoto()
         }
     }
     
