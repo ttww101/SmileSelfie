@@ -1,0 +1,6 @@
+framework module Pods_SmileSelfie {
+  umbrella header "Pods-SmileSelfie-umbrella.h"
+
+  export *
+  module * { export * }
+}

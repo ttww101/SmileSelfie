@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D5BC69093A65C03534B1BE4 /* Pods_SmileSelfie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07DC2225E2212999C8907B1 /* Pods_SmileSelfie.framework */; };
 		9439C969229E2F3B0009CF8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C968229E2F3B0009CF8D /* AppDelegate.swift */; };
 		9439C96B229E2F3B0009CF8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C96A229E2F3B0009CF8D /* ViewController.swift */; };
 		9439C96E229E2F3B0009CF8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9439C96C229E2F3B0009CF8D /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A36EDEE773F5C557D90E77D /* Pods-SmileSelfie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmileSelfie.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.release.xcconfig"; sourceTree = "<group>"; };
+		65816FFAC30AA51F8EDAB604 /* Pods-SmileSelfie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmileSelfie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.debug.xcconfig"; sourceTree = "<group>"; };
 		9439C965229E2F3B0009CF8D /* SmileSelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmileSelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9439C968229E2F3B0009CF8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9439C96A229E2F3B0009CF8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		9439C96F229E2F3C0009CF8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9439C972229E2F3C0009CF8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9439C974229E2F3C0009CF8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C07DC2225E2212999C8907B1 /* Pods_SmileSelfie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmileSelfie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D5BC69093A65C03534B1BE4 /* Pods_SmileSelfie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		535A0C032A72E3DFB2D60322 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65816FFAC30AA51F8EDAB604 /* Pods-SmileSelfie.debug.xcconfig */,
+				0A36EDEE773F5C557D90E77D /* Pods-SmileSelfie.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9439C95C229E2F3B0009CF8D = {
 			isa = PBXGroup;
 			children = (
 				9439C967229E2F3B0009CF8D /* SmileSelfie */,
 				9439C966229E2F3B0009CF8D /* Products */,
+				535A0C032A72E3DFB2D60322 /* Pods */,
+				B85F7C42F7A900876B8BD5A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = SmileSelfie;
 			sourceTree = "<group>";
 		};
+		B85F7C42F7A900876B8BD5A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C07DC2225E2212999C8907B1 /* Pods_SmileSelfie.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,6 +95,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9439C977229E2F3C0009CF8D /* Build configuration list for PBXNativeTarget "SmileSelfie" */;
 			buildPhases = (
+				B53885B216486AD89168EB40 /* [CP] Check Pods Manifest.lock */,
 				9439C961229E2F3B0009CF8D /* Sources */,
 				9439C962229E2F3B0009CF8D /* Frameworks */,
 				9439C963229E2F3B0009CF8D /* Resources */,
@@ -129,6 +154,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B53885B216486AD89168EB40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmileSelfie-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9439C961229E2F3B0009CF8D /* Sources */ = {
@@ -280,6 +330,7 @@
 		};
 		9439C978229E2F3C0009CF8D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65816FFAC30AA51F8EDAB604 /* Pods-SmileSelfie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +349,7 @@
 		};
 		9439C979229E2F3C0009CF8D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A36EDEE773F5C557D90E77D /* Pods-SmileSelfie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
