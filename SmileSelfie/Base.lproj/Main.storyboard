@@ -1,24 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fSH-20-vDp">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="SmileSelfie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YW8-bd-5Oo">
+                                <rect key="frame" x="151" y="350.5" width="73" height="30"/>
+                                <state key="normal" title="Smile Cam"/>
+                                <connections>
+                                    <action selector="smileButtonDidTouchupInside" destination="BYZ-38-t0r" eventType="touchUpInside" id="oA9-Z6-sp5"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="YW8-bd-5Oo" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KD5-kv-oVY"/>
+                            <constraint firstItem="YW8-bd-5Oo" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VS1-Xg-jXV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Rpc-GI-an1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="943" y="686"/>
+        </scene>
+        <!--Smile Selfie View Controller-->
+        <scene sceneID="bWD-U8-6Sh">
+            <objects>
+                <viewController storyboardIdentifier="SmileSelfieViewController" id="Ejf-9c-VpQ" customClass="SmileSelfieViewController" customModule="SmileSelfie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JoO-wr-gb8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df0-Ra-msG">
+                                <rect key="frame" x="320" y="20" width="39" height="30"/>
+                                <state key="normal" title="Mode"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Kr-rS-mgg">
+                                <rect key="frame" x="16" y="20" width="43" height="30"/>
+                                <state key="normal" title="N Live"/>
+                                <state key="selected" title="Live"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kO4-Xm-0jz">
+                                <rect key="frame" x="161.5" y="20" width="52" height="30"/>
+                                <state key="normal" title="N Flash"/>
+                                <state key="selected" title="Flash"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVk-T9-euo">
+                                <rect key="frame" x="16" y="617" width="69" height="30"/>
+                                <state key="normal" title="Collection"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s1-2R-AhN">
+                                <rect key="frame" x="144" y="617" width="87" height="30"/>
+                                <state key="normal" title="Auto/Manual"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5i-jM-ojy">
+                                <rect key="frame" x="321" y="617" width="38" height="30"/>
+                                <state key="normal" title="3 sec"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nVk-T9-euo" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="5fE-la-tKH"/>
+                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="df0-Ra-msG" secondAttribute="trailing" constant="16" id="7Lc-xm-yIM"/>
+                            <constraint firstItem="kO4-Xm-0jz" firstAttribute="centerX" secondItem="3Ca-Ey-jD3" secondAttribute="centerX" id="NRp-PJ-sMk"/>
+                            <constraint firstItem="df0-Ra-msG" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="OHA-t5-NkZ"/>
+                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="nVk-T9-euo" secondAttribute="bottom" constant="20" id="PhO-hE-PSF"/>
+                            <constraint firstItem="2Kr-rS-mgg" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="bWz-15-q9G"/>
+                            <constraint firstItem="2Kr-rS-mgg" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="lHB-8x-qbi"/>
+                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="2s1-2R-AhN" secondAttribute="bottom" constant="20" id="pZ4-Ki-NaY"/>
+                            <constraint firstItem="kO4-Xm-0jz" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="tia-Y5-gVb"/>
+                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="X5i-jM-ojy" secondAttribute="bottom" constant="20" id="tx8-QS-MRK"/>
+                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="X5i-jM-ojy" secondAttribute="trailing" constant="16" id="u7q-Kd-K9f"/>
+                            <constraint firstItem="2s1-2R-AhN" firstAttribute="centerX" secondItem="3Ca-Ey-jD3" secondAttribute="centerX" id="wDP-6C-KGC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3Ca-Ey-jD3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dvf-2H-3UU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1639" y="686"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="60B-94-8EI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fSH-20-vDp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jMc-Fd-IW8">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="uGf-VO-G7S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4wc-8G-XUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165.59999999999999" y="685.90704647676171"/>
         </scene>
     </scenes>
 </document>

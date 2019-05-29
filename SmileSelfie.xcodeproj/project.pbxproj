@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		8D5BC69093A65C03534B1BE4 /* Pods_SmileSelfie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07DC2225E2212999C8907B1 /* Pods_SmileSelfie.framework */; };
 		9439C969229E2F3B0009CF8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C968229E2F3B0009CF8D /* AppDelegate.swift */; };
-		9439C96B229E2F3B0009CF8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C96A229E2F3B0009CF8D /* ViewController.swift */; };
+		9439C96B229E2F3B0009CF8D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C96A229E2F3B0009CF8D /* HomeViewController.swift */; };
 		9439C96E229E2F3B0009CF8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9439C96C229E2F3B0009CF8D /* Main.storyboard */; };
 		9439C970229E2F3C0009CF8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9439C96F229E2F3C0009CF8D /* Assets.xcassets */; };
 		9439C973229E2F3C0009CF8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9439C971229E2F3C0009CF8D /* LaunchScreen.storyboard */; };
+		9482554E229E358D00ADAFB6 /* SmileSelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482554D229E358D00ADAFB6 /* SmileSelfieViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,11 +21,12 @@
 		65816FFAC30AA51F8EDAB604 /* Pods-SmileSelfie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmileSelfie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.debug.xcconfig"; sourceTree = "<group>"; };
 		9439C965229E2F3B0009CF8D /* SmileSelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmileSelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9439C968229E2F3B0009CF8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9439C96A229E2F3B0009CF8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9439C96A229E2F3B0009CF8D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9439C96D229E2F3B0009CF8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9439C96F229E2F3C0009CF8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9439C972229E2F3C0009CF8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9439C974229E2F3C0009CF8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9482554D229E358D00ADAFB6 /* SmileSelfieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileSelfieViewController.swift; sourceTree = "<group>"; };
 		C07DC2225E2212999C8907B1 /* Pods_SmileSelfie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmileSelfie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,13 +73,22 @@
 			isa = PBXGroup;
 			children = (
 				9439C968229E2F3B0009CF8D /* AppDelegate.swift */,
-				9439C96A229E2F3B0009CF8D /* ViewController.swift */,
 				9439C96C229E2F3B0009CF8D /* Main.storyboard */,
+				9482554F229E359300ADAFB6 /* Controllers */,
 				9439C96F229E2F3C0009CF8D /* Assets.xcassets */,
 				9439C971229E2F3C0009CF8D /* LaunchScreen.storyboard */,
 				9439C974229E2F3C0009CF8D /* Info.plist */,
 			);
 			path = SmileSelfie;
+			sourceTree = "<group>";
+		};
+		9482554F229E359300ADAFB6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9439C96A229E2F3B0009CF8D /* HomeViewController.swift */,
+				9482554D229E358D00ADAFB6 /* SmileSelfieViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B85F7C42F7A900876B8BD5A4 /* Frameworks */ = {
@@ -185,7 +196,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9439C96B229E2F3B0009CF8D /* ViewController.swift in Sources */,
+				9482554E229E358D00ADAFB6 /* SmileSelfieViewController.swift in Sources */,
+				9439C96B229E2F3B0009CF8D /* HomeViewController.swift in Sources */,
 				9439C969229E2F3B0009CF8D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
