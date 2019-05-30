@@ -53,12 +53,8 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
                 completionImageView.layer.cornerRadius = 5
                 completionImageView.layer.masksToBounds = true
                 completionImageView.layer.borderColor = UIColor.hexColor(with: "28D8B8").cgColor
-                completionImageView.frame = CGRect.zero
                 completionImageView.frame = self.collectionButton.frame
-//                completionImageView.center = self.collectionButton.center
             }) { (completion) in
-//                completionImageView.image = nil
-//                completionImageView.removeFromSuperview()
                 completionImageView.layer.borderWidth = 0.5
                 print("end")
             }
@@ -71,6 +67,9 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     }
     var isAutoSavingPhoto: Bool = false
     var smileTimeInterval: TimeInterval = 3
+    
+    //imagePicker
+    var imagePicker: UIImagePickerController!
     
     //button control feature
     var isLive: Bool = false
@@ -136,21 +135,13 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     @IBAction func modeButtonDidTouchupInside(_ sender: Any) {
         self.isDrawFaceOutLine.toggle()
         self.modeButton.isSelected.toggle()
-        if (self.modeButton.isSelected) {
-        } else {
-//            self.modeButton.imageView?.tintAdjustmentMode = self.modeButton.isSelected ? .dimmed : .dimmed
-//            let image = UIImage().withRenderingMode(.alwaysTemplate)
-//            self.modeButton.setImage(image, for: .normal)
-//            self.modeButton.tintColor = .white
-//            let stencil = UIImage().maskWith(color: .white).withRenderingMode(.alwaysTemplate)
-//            self.modeButton.setImage(stencil, for: .normal) // assign it to your UIButton
-//            self.modeButton.tintColor = UIColor.white // set a color
-//            self.modeButton.imageView?.image?.maskWith(color: .white)
-//            self.modeButton.imageView?.tintColorDidChange()
-        }
     }
     
     @IBAction func collentionButtonDidTouchupInside(_ sender: Any) {
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func manualShotButtonDidTouchUpInside(_ sender: UIButton) {
@@ -398,8 +389,18 @@ extension SmileSelfieViewController {
         DispatchQueue.main.async {
             self.cameraOutput.captureCompletion = { (image) in
                 self.smileImage = image
+                UIImageWriteToSavedPhotosAlbum(image!, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
             self.cameraOutput.capturePhoto()
+        }
+    }
+    
+    //MARK: - Add image to Library
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save Photo Error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
         }
     }
     
@@ -522,5 +523,17 @@ extension SmileSelfieViewController {
             
         default: break
         }
+    }
+}
+
+extension SmileSelfieViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        imagePicker.dismiss(animated: true, completion: nil)
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            print("Image not found!")
+            return
+        }
+//        imageTake.image = selectedImage
     }
 }
