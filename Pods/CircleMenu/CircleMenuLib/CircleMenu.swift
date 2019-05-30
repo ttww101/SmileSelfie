@@ -159,7 +159,7 @@ open class CircleMenu: UIButton {
 
         commonInit()
     }
-
+    
     fileprivate func commonInit() {
         addActions(newEvent: showButtonsEvent)
 
@@ -232,6 +232,7 @@ open class CircleMenu: UIButton {
             let button = customize(CircleMenuButton(size: buttonSize, platform: platform, distance: distance, angle: angle)) {
                 $0.tag = index
                 $0.addTarget(self, action: #selector(CircleMenu.buttonHandler(_:)), for: UIControl.Event.touchUpInside)
+                $0.imageView?.contentMode = .scaleAspectFit
                 $0.alpha = 0
             }
             buttons.append(button)
@@ -246,20 +247,20 @@ open class CircleMenu: UIButton {
 
         let iconView = customize(UIImageView(image: image)) {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.contentMode = .center
+            $0.contentMode = .scaleAspectFit
             $0.isUserInteractionEnabled = false
         }
         addSubview(iconView)
 
         // added constraints
         iconView.addConstraint(NSLayoutConstraint(item: iconView, attribute: .height, relatedBy: .equal, toItem: nil,
-                                                  attribute: .height, multiplier: 1, constant: bounds.size.height))
+                                                  attribute: .height, multiplier: 1, constant: bounds.size.height - self.imageEdgeInsets.top - self.imageEdgeInsets.bottom))
 
         iconView.addConstraint(NSLayoutConstraint(item: iconView, attribute: .width, relatedBy: .equal, toItem: nil,
-                                                  attribute: .width, multiplier: 1, constant: bounds.size.width))
+                                                  attribute: .width, multiplier: 1, constant: bounds.size.width - self.imageEdgeInsets.left - self.imageEdgeInsets.right))
 
         addConstraint(NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: iconView,
-                                         attribute: .centerX, multiplier: 1, constant: 0))
+                                         attribute: .centerX, multiplier: 1, constant: (self.imageEdgeInsets.right - self.imageEdgeInsets.left)/2))
 
         addConstraint(NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: iconView,
                                          attribute: .centerY, multiplier: 1, constant: 0))
@@ -386,7 +387,7 @@ open class CircleMenu: UIButton {
         }
 
         hideCenterButton(duration: 0.01)
-        showCenterButton(duration: 0.525, delay: 0)
+        showCenterButton(duration: 0.525, delay: 0.01)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0, execute: {
             self.delegate?.circleMenu?(self, buttonDidSelected: sender, atIndex: sender.tag)
@@ -511,18 +512,18 @@ open class CircleMenu: UIButton {
             $0.initialVelocity = 0
             $0.beginTime = CACurrentMediaTime() + delay
         }
-
-        let fade = customize(CABasicAnimation(keyPath: "opacity")) {
-            $0.duration = TimeInterval(0.01)
-            $0.toValue = 0
+        let show = customize(CABasicAnimation(keyPath: "opacity")) {
+            $0.duration = TimeInterval(duration)
+            $0.toValue = isSelected ? 0 : 1
             $0.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             $0.fillMode = CAMediaTimingFillMode.forwards
             $0.isRemovedOnCompletion = false
             $0.beginTime = CACurrentMediaTime() + delay
         }
-        let show = customize(CABasicAnimation(keyPath: "opacity")) {
+
+        let fade = customize(CABasicAnimation(keyPath: "opacity")) {
             $0.duration = TimeInterval(duration)
-            $0.toValue = 1
+            $0.toValue = isSelected ? 1 : 0
             $0.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             $0.fillMode = CAMediaTimingFillMode.forwards
             $0.isRemovedOnCompletion = false

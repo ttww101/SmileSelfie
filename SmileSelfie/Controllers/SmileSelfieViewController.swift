@@ -17,7 +17,6 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     //UI
     @IBOutlet var faceView: FaceView!
     @IBOutlet var collectionButton: UIButton!
-    @IBOutlet var autoButton: UIButton!
     @IBOutlet var liveButton: UIButton!
     @IBOutlet var flashButton: UIButton!
     @IBOutlet var modeButton: UIButton!
@@ -47,14 +46,21 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
             //image animation
             let completionImageView = UIImageView()
             completionImageView.image = image
+            completionImageView.contentMode = .scaleAspectFill
             self.view.addSubview(completionImageView)
             completionImageView.frame = self.view.frame
             UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
+                completionImageView.layer.cornerRadius = 5
+                completionImageView.layer.masksToBounds = true
+                completionImageView.layer.borderColor = UIColor.hexColor(with: "28D8B8").cgColor
                 completionImageView.frame = CGRect.zero
-                completionImageView.center = self.collectionButton.center
+                completionImageView.frame = self.collectionButton.frame
+//                completionImageView.center = self.collectionButton.center
             }) { (completion) in
-                completionImageView.image = nil
-                completionImageView.removeFromSuperview()
+//                completionImageView.image = nil
+//                completionImageView.removeFromSuperview()
+                completionImageView.layer.borderWidth = 0.5
+                print("end")
             }
         }
     }
@@ -70,7 +76,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     var isLive: Bool = false
     var isFlash: Bool = false
     var isDrawFaceOutLine: Bool = false
-    var isAuto: Bool = true
+    var isAuto: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,10 +88,12 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         previewLayer.frame = view.bounds
     }
     
-    let items: [(icon: String, color: UIColor)] = [
-        ("number_3", UIColor.clear),
-        ("number_5", UIColor.clear),
-        ("number_10", UIColor.clear),
+    let items: [(icon: String, color: UIColor, title: String)] = [
+        ("", UIColor.clear, "1s"),
+        ("", UIColor.clear, "3s"),
+        ("manual", UIColor.clear, ""),
+        ("", UIColor.clear, "10s"),
+        ("", UIColor.clear, "15s"),
     ]
     
     private func setup() {
@@ -95,13 +103,13 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.manualShotButton.contentVerticalAlignment = .fill
         self.manualShotButton.contentHorizontalAlignment = .fill
         
+        self.timeIntervalCircleMenuButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 10, right: 12)
+        
         //ui
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
-        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[0].icon), for: .normal)
-        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[0].icon), for: .selected)
     }
     
     //MARK: IBActions
@@ -145,12 +153,6 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     @IBAction func collentionButtonDidTouchupInside(_ sender: Any) {
     }
     
-    @IBAction func autoButtonDidTouchupInside(_ sender: Any) {
-        self.isAuto.toggle()
-        self.autoButton.isSelected.toggle()
-        self.timeIntervalCircleMenuButton.isHidden = !isAuto
-    }
-    
     @IBAction func manualShotButtonDidTouchUpInside(_ sender: UIButton) {
         self.saveToCamera()
     }
@@ -167,6 +169,8 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
 extension SmileSelfieViewController {
     
     private func configureCaptureSession() {
+        
+        captureSession.sessionPreset = .photo
         
         guard
             let camera = cameraWithPosition(position: .front)
@@ -378,6 +382,7 @@ extension SmileSelfieViewController {
         //auto saving
         if (self.isAutoSavingPhoto == false) {
             self.isAutoSavingPhoto = true
+            //TODO: cancel when changing auto
             DispatchQueue.main.asyncAfter(deadline: .now() + smileTimeInterval, execute: {
                 if !self.isSmiling || !self.isAuto {
                     self.isAutoSavingPhoto = false
@@ -460,37 +465,59 @@ extension SmileSelfieViewController {
     }
 }
 
-//
+//CircleMenuDelegate
 extension SmileSelfieViewController {
+    
+    func menuOpened(_ circleMenu: CircleMenu) {
+        self.isAuto = false
+    }
+    
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         
         button.backgroundColor = items[atIndex].color
-        button.setImage(UIImage(named: items[atIndex].icon), for: .normal)
+        button.setTitle(items[atIndex].title, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        if (atIndex == 2) {
+            button.setImage(UIImage(named: items[atIndex].icon), for: .normal)
+            button.imageEdgeInsets = self.timeIntervalCircleMenuButton.imageEdgeInsets
+        }
         
         // set highlited image
-        let highlightedImage = UIImage(named: items[atIndex].icon)?.withRenderingMode(.alwaysTemplate)
-        button.setImage(highlightedImage, for: .highlighted)
-        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+//        let highlightedImage = UIImage(named: items[atIndex].icon)?.withRenderingMode(.alwaysTemplate)
+//        button.setImage(highlightedImage, for: .highlighted)
+//        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+//        button.imageView?.contentMode = .scaleAspectFit
     }
     
     func circleMenu(_: CircleMenu, buttonWillSelected _: UIButton, atIndex: Int) {
-        
+        if (atIndex != 2) {
+            self.timeIntervalCircleMenuButton.isSelected = true
+            self.isAuto = true
+        } else {
+            self.timeIntervalCircleMenuButton.isSelected = false
+            self.isAuto = false
+        }
     }
     
     func circleMenu(_: CircleMenu, buttonDidSelected _: UIButton, atIndex: Int) {
-        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[atIndex].icon), for: .normal)
-        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[atIndex].icon), for: .selected)
         switch atIndex {
         case 0:
-            self.smileTimeInterval = 3
+            self.smileTimeInterval = 1
             break
             
         case 1:
-            self.smileTimeInterval = 5
+            self.smileTimeInterval = 3
             break
             
         case 2:
+            break
+            
+        case 3:
             self.smileTimeInterval = 10
+            break
+            
+        case 4:
+            self.smileTimeInterval = 15
             break
             
         default: break

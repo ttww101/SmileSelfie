@@ -85,38 +85,25 @@
                                     <action selector="liveButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="cA6-87-8aM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s1-2R-AhN">
-                                <rect key="frame" x="162.5" y="527" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5i-jM-ojy" customClass="CircleMenu" customModule="CircleMenu">
+                                <rect key="frame" x="162.5" y="522" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Qsf-Xv-LYR"/>
-                                    <constraint firstAttribute="width" constant="50" id="gQM-vy-zyo"/>
+                                    <constraint firstAttribute="width" constant="50" id="beI-nr-pfV"/>
+                                    <constraint firstAttribute="height" constant="50" id="eti-cY-hOW"/>
                                 </constraints>
                                 <color key="tintColor" red="0.15686274510000001" green="0.84705882349999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Auto"/>
-                                <state key="selected" title="Manual"/>
-                                <connections>
-                                    <action selector="autoButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Kzj-dF-p4b"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5i-jM-ojy" customClass="CircleMenu" customModule="CircleMenu">
-                                <rect key="frame" x="169.5" y="491" width="36" height="36"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="1Bq-rl-L4U"/>
-                                    <constraint firstAttribute="height" constant="36" id="iM5-ch-EHJ"/>
-                                </constraints>
-                                <state key="selected">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <inset key="imageEdgeInsets" minX="5" minY="8" maxX="11" maxY="8"/>
+                                <state key="normal" image="manual"/>
+                                <state key="selected" title="Auto" image="nil"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="buttonsCount">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                         <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="distance">
-                                        <real key="value" value="70"/>
+                                        <real key="value" value="80"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <integer key="value" value="5"/>
@@ -128,7 +115,7 @@
                                         <real key="value" value="270"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="endAngle">
-                                        <real key="value" value="359"/>
+                                        <real key="value" value="450"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -183,8 +170,10 @@
                                     <constraint firstAttribute="width" constant="44" id="rRn-lG-oJj"/>
                                     <constraint firstAttribute="height" constant="44" id="wwz-mk-lPW"/>
                                 </constraints>
-                                <color key="tintColor" red="0.15686274510000001" green="0.84705882349999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="cam_change"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="cam_change">
+                                    <color key="titleShadowColor" red="0.18232471450000001" green="0.18232471450000001" blue="0.18232471450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <state key="selected" image="cam_change"/>
                                 <connections>
                                     <action selector="camChangeButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="kWP-5x-EFk"/>
@@ -193,31 +182,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2s1-2R-AhN" firstAttribute="centerX" secondItem="HgG-ac-Sp2" secondAttribute="centerX" id="0Wc-Ky-sS6"/>
                             <constraint firstAttribute="bottom" secondItem="JIP-gF-PTx" secondAttribute="bottom" id="1De-pe-eVO"/>
+                            <constraint firstItem="HgG-ac-Sp2" firstAttribute="top" secondItem="X5i-jM-ojy" secondAttribute="bottom" constant="5" id="4zI-gR-d41"/>
                             <constraint firstItem="nVk-T9-euo" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="5fE-la-tKH"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="df0-Ra-msG" secondAttribute="trailing" constant="16" id="7Lc-xm-yIM"/>
                             <constraint firstItem="WEd-xY-upR" firstAttribute="centerY" secondItem="HgG-ac-Sp2" secondAttribute="centerY" id="8yM-3Z-Xyz"/>
                             <constraint firstItem="HgG-ac-Sp2" firstAttribute="centerX" secondItem="3Ca-Ey-jD3" secondAttribute="centerX" id="9kO-bj-Z4Q"/>
-                            <constraint firstItem="X5i-jM-ojy" firstAttribute="centerX" secondItem="2s1-2R-AhN" secondAttribute="centerX" id="AlU-PZ-IMZ"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="JIP-gF-PTx" secondAttribute="trailing" id="Cp2-AD-Wfo"/>
                             <constraint firstItem="kO4-Xm-0jz" firstAttribute="centerX" secondItem="3Ca-Ey-jD3" secondAttribute="centerX" id="NRp-PJ-sMk"/>
                             <constraint firstItem="df0-Ra-msG" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="OHA-t5-NkZ"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" id="QH3-Wj-L21"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="bWz-15-q9G"/>
-                            <constraint firstItem="HgG-ac-Sp2" firstAttribute="top" secondItem="2s1-2R-AhN" secondAttribute="bottom" id="c8s-Uo-9yu"/>
                             <constraint firstItem="nVk-T9-euo" firstAttribute="centerY" secondItem="HgG-ac-Sp2" secondAttribute="centerY" id="dBL-wX-g5S"/>
+                            <constraint firstItem="X5i-jM-ojy" firstAttribute="centerX" secondItem="HgG-ac-Sp2" secondAttribute="centerX" id="fqa-TZ-0f9"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="lHB-8x-qbi"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="top" secondItem="JoO-wr-gb8" secondAttribute="top" id="o39-xV-TQv"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="HgG-ac-Sp2" secondAttribute="bottom" constant="20" id="qRA-br-aPl"/>
-                            <constraint firstItem="2s1-2R-AhN" firstAttribute="top" secondItem="X5i-jM-ojy" secondAttribute="bottom" id="qoP-9c-8tG"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="WEd-xY-upR" secondAttribute="trailing" constant="16" id="tBK-4B-stE"/>
                             <constraint firstItem="kO4-Xm-0jz" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="tia-Y5-gVb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Ca-Ey-jD3"/>
                     </view>
                     <connections>
-                        <outlet property="autoButton" destination="2s1-2R-AhN" id="Axu-n1-W7u"/>
                         <outlet property="camChangeButton" destination="WEd-xY-upR" id="awd-2L-JZ3"/>
                         <outlet property="collectionButton" destination="nVk-T9-euo" id="d15-jw-24R"/>
                         <outlet property="faceView" destination="JIP-gF-PTx" id="Hoz-sU-bw1"/>
@@ -255,7 +241,9 @@
         <image name="cam_change" width="48" height="48"/>
         <image name="flash_off" width="50" height="50"/>
         <image name="flash_on" width="50" height="50"/>
-        <image name="gallery" width="50" height="50"/>
+        <image name="gallery" width="48" height="48"/>
+        <image name="manual" width="50" height="50"/>
         <image name="manual_shot" width="50" height="50"/>
+        <image name="nil" width="16" height="16"/>
     </resources>
 </document>

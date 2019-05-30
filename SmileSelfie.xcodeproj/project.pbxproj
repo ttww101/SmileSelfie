@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D5BC69093A65C03534B1BE4 /* Pods_SmileSelfie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07DC2225E2212999C8907B1 /* Pods_SmileSelfie.framework */; };
 		942927FE229FB04700C34915 /* UIImage+mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942927FD229FB04700C34915 /* UIImage+mask.swift */; };
+		94292800229FFF3B00C34915 /* UIColor+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942927FF229FFF3B00C34915 /* UIColor+Addition.swift */; };
 		9439C969229E2F3B0009CF8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C968229E2F3B0009CF8D /* AppDelegate.swift */; };
 		9439C96B229E2F3B0009CF8D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C96A229E2F3B0009CF8D /* HomeViewController.swift */; };
 		9439C96E229E2F3B0009CF8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9439C96C229E2F3B0009CF8D /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		0A36EDEE773F5C557D90E77D /* Pods-SmileSelfie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmileSelfie.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.release.xcconfig"; sourceTree = "<group>"; };
 		65816FFAC30AA51F8EDAB604 /* Pods-SmileSelfie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmileSelfie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.debug.xcconfig"; sourceTree = "<group>"; };
 		942927FD229FB04700C34915 /* UIImage+mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+mask.swift"; sourceTree = "<group>"; };
+		942927FF229FFF3B00C34915 /* UIColor+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Addition.swift"; sourceTree = "<group>"; };
 		9439C965229E2F3B0009CF8D /* SmileSelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmileSelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9439C968229E2F3B0009CF8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9439C96A229E2F3B0009CF8D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				94825557229E462100ADAFB6 /* CoreGraphicsExtensions.swift */,
 				94825559229E466B00ADAFB6 /* UIView+CornerRadius.swift */,
 				942927FD229FB04700C34915 /* UIImage+mask.swift */,
+				942927FF229FFF3B00C34915 /* UIColor+Addition.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9482554E229E358D00ADAFB6 /* SmileSelfieViewController.swift in Sources */,
+				94292800229FFF3B00C34915 /* UIColor+Addition.swift in Sources */,
 				9439C96B229E2F3B0009CF8D /* HomeViewController.swift in Sources */,
 				94825552229E3E4900ADAFB6 /* CameraCaptureOutput.swift in Sources */,
 				9439C969229E2F3B0009CF8D /* AppDelegate.swift in Sources */,
