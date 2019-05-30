@@ -7,39 +7,116 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D750F1CAE81AA21BE5AC76B9C29FCF7 /* Pods-SmileSelfie-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 731AFE3123A16E60459DAA0EF29A4126 /* Pods-SmileSelfie-dummy.m */; };
-		AA770F8B30B963A544017FDE05AD9F02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
-		F4F77883BC25768EE87C5D4530669881 /* Pods-SmileSelfie-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 38933FFF8A9AE775CA456C86E50FDEC4 /* Pods-SmileSelfie-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		363361AD12BE5014668BE3753D7265D6 /* CircleMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CB4CEF53270436A649674AD5964AA06B /* CircleMenu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F54F9B502B4896C515B434EBC4EBB30 /* Pods-SmileSelfie-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 731AFE3123A16E60459DAA0EF29A4126 /* Pods-SmileSelfie-dummy.m */; };
+		5B05B8B3A902DAE2EF8BAB0730405435 /* CircleMenuLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46544C2E40E219DECA263339F85EA31 /* CircleMenuLoader.swift */; };
+		9F950187F8DA4AD1170647D2631B4A0F /* Pods-SmileSelfie-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 38933FFF8A9AE775CA456C86E50FDEC4 /* Pods-SmileSelfie-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CF4716A38BE409DBD4867C76ACDC8D09 /* CircleMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58611E43AC4F6ADBD126D015109DE923 /* CircleMenuButton.swift */; };
+		DA20F0CBA3B150A1C43B0E019E46CE37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		EC523D1063B29819446098D6301CD93F /* CircleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A637C0A7D90DF2CD1BCD09A59F9462E2 /* CircleMenu.swift */; };
+		F3B5458A16C13CA962537FD4E6F39241 /* CircleMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CFDD1E7C0642F64837D13D6DAD8E0 /* CircleMenu-dummy.m */; };
+		F825C3263B31F3147B6672790A653099 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		471F0F72361C31E43657A01D560ACF06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 404A878F123C2A9D0A6C2101BF182D8E;
+			remoteInfo = CircleMenu;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0AF243470CC0BE9328A9C70B9F988763 /* Pods-SmileSelfie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmileSelfie.debug.xcconfig"; sourceTree = "<group>"; };
+		19FCDCFA2DCB408E47B459E05B0F400A /* CircleMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircleMenu-prefix.pch"; sourceTree = "<group>"; };
 		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2F6CFDD1E7C0642F64837D13D6DAD8E0 /* CircleMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CircleMenu-dummy.m"; sourceTree = "<group>"; };
 		365C755FFB937F242EF8B2385192D920 /* Pods-SmileSelfie-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmileSelfie-resources.sh"; sourceTree = "<group>"; };
 		38933FFF8A9AE775CA456C86E50FDEC4 /* Pods-SmileSelfie-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SmileSelfie-umbrella.h"; sourceTree = "<group>"; };
+		39D3256126B86118CF7DEDF46A7A2797 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44B24EFEE7CB6728B47DFE14E2CEA5B7 /* Pods-SmileSelfie-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SmileSelfie-frameworks.sh"; sourceTree = "<group>"; };
 		57B628F45D57998D050AB934F5A91FD8 /* Pods-SmileSelfie.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SmileSelfie.modulemap"; sourceTree = "<group>"; };
-		601DAA09ECB8F71D242A97989A6A1A83 /* Pods_SmileSelfie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SmileSelfie.framework; path = "Pods-SmileSelfie.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		58611E43AC4F6ADBD126D015109DE923 /* CircleMenuButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircleMenuButton.swift; path = CircleMenuLib/CircleMenuButton/CircleMenuButton.swift; sourceTree = "<group>"; };
 		731AFE3123A16E60459DAA0EF29A4126 /* Pods-SmileSelfie-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SmileSelfie-dummy.m"; sourceTree = "<group>"; };
 		989175102769C2E713F536D02E118B03 /* Pods-SmileSelfie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SmileSelfie.release.xcconfig"; sourceTree = "<group>"; };
 		9A971B4A9F2544E046D159D56D6A1A8E /* Pods-SmileSelfie-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SmileSelfie-acknowledgements.plist"; sourceTree = "<group>"; };
 		A1DD84DFE6FB803A813B8EE7784BA8E2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A637C0A7D90DF2CD1BCD09A59F9462E2 /* CircleMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircleMenu.swift; path = CircleMenuLib/CircleMenu.swift; sourceTree = "<group>"; };
+		B954A2B66DBDE38D1D254D541963CF44 /* CircleMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CircleMenu.framework; path = CircleMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CB4CEF53270436A649674AD5964AA06B /* CircleMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircleMenu-umbrella.h"; sourceTree = "<group>"; };
+		E46544C2E40E219DECA263339F85EA31 /* CircleMenuLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircleMenuLoader.swift; path = CircleMenuLib/CircleMenuLoader/CircleMenuLoader.swift; sourceTree = "<group>"; };
+		EFCF9EE6A85DC2A5D25DB57C1FB3EB58 /* CircleMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CircleMenu.xcconfig; sourceTree = "<group>"; };
+		F10651E69ED7EB4FD590CF614A9615FF /* Pods_SmileSelfie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SmileSelfie.framework; path = "Pods-SmileSelfie.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1314ED970C44FDCC5F9605E3CE3868D /* CircleMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CircleMenu.modulemap; sourceTree = "<group>"; };
 		FB41E53A24CF825D0CCBCB9EC8F199F0 /* Pods-SmileSelfie-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SmileSelfie-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C61664E0E6DD3708B34594ABF016031D /* Frameworks */ = {
+		BDF46E4A4662D70BBC878525B59468A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA770F8B30B963A544017FDE05AD9F02 /* Foundation.framework in Frameworks */,
+				F825C3263B31F3147B6672790A653099 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE0A7701B4EDCA665158C405214AB8F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA20F0CBA3B150A1C43B0E019E46CE37 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14C42E72E981AEB431ECFE19B97CC8CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B954A2B66DBDE38D1D254D541963CF44 /* CircleMenu.framework */,
+				F10651E69ED7EB4FD590CF614A9615FF /* Pods_SmileSelfie.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		461C135FEC2B79B2F48103CBD5200209 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1314ED970C44FDCC5F9605E3CE3868D /* CircleMenu.modulemap */,
+				EFCF9EE6A85DC2A5D25DB57C1FB3EB58 /* CircleMenu.xcconfig */,
+				2F6CFDD1E7C0642F64837D13D6DAD8E0 /* CircleMenu-dummy.m */,
+				19FCDCFA2DCB408E47B459E05B0F400A /* CircleMenu-prefix.pch */,
+				CB4CEF53270436A649674AD5964AA06B /* CircleMenu-umbrella.h */,
+				39D3256126B86118CF7DEDF46A7A2797 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CircleMenu";
+			sourceTree = "<group>";
+		};
+		57908AE70B2564D2F7EF63242132CC12 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80D1BB3A86ACCA6CF08ECD7FEAE339E3 /* CircleMenu */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		80D1BB3A86ACCA6CF08ECD7FEAE339E3 /* CircleMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A637C0A7D90DF2CD1BCD09A59F9462E2 /* CircleMenu.swift */,
+				58611E43AC4F6ADBD126D015109DE923 /* CircleMenuButton.swift */,
+				E46544C2E40E219DECA263339F85EA31 /* CircleMenuLoader.swift */,
+				461C135FEC2B79B2F48103CBD5200209 /* Support Files */,
+			);
+			name = CircleMenu;
+			path = CircleMenu;
+			sourceTree = "<group>";
+		};
 		96A1DB3189CB9F8E9C99B12C349438F1 /* Pods-SmileSelfie */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,7 +156,8 @@
 			children = (
 				24390EFD555DD124430DFF9724065945 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				E003BC1B2294CEF9BB39E0DBFFB8DC39 /* Products */,
+				57908AE70B2564D2F7EF63242132CC12 /* Pods */,
+				14C42E72E981AEB431ECFE19B97CC8CB /* Products */,
 				9CB94939DBBAC67376ACD265CD0B78A2 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -92,44 +170,63 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E003BC1B2294CEF9BB39E0DBFFB8DC39 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				601DAA09ECB8F71D242A97989A6A1A83 /* Pods_SmileSelfie.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		09C4A9BCD2875786C2CF80A22488DEBF /* Headers */ = {
+		5857F2886A7FAD9414F574CBECD8DF1B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4F77883BC25768EE87C5D4530669881 /* Pods-SmileSelfie-umbrella.h in Headers */,
+				9F950187F8DA4AD1170647D2631B4A0F /* Pods-SmileSelfie-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC13ED8DB228480ECC4B16522D6F81C6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				363361AD12BE5014668BE3753D7265D6 /* CircleMenu-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2DFA0D7386F3DFB82A31A5F0C7AC4D7A /* Pods-SmileSelfie */ = {
+		404A878F123C2A9D0A6C2101BF182D8E /* CircleMenu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E21FA5782925C8ED31C85E7DC434FF68 /* Build configuration list for PBXNativeTarget "Pods-SmileSelfie" */;
+			buildConfigurationList = DE1279B6A9A60675583895C0B31AEEC8 /* Build configuration list for PBXNativeTarget "CircleMenu" */;
 			buildPhases = (
-				09C4A9BCD2875786C2CF80A22488DEBF /* Headers */,
-				B000E0ADAFC766A86945E8C991C26A58 /* Sources */,
-				C61664E0E6DD3708B34594ABF016031D /* Frameworks */,
-				584F47D74EC82F392225F94AEAD8EF45 /* Resources */,
+				CC13ED8DB228480ECC4B16522D6F81C6 /* Headers */,
+				F5FB357E559986949727E81982A0B22A /* Sources */,
+				BDF46E4A4662D70BBC878525B59468A6 /* Frameworks */,
+				56E198011065CA81EE9760ED73275FB9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = CircleMenu;
+			productName = CircleMenu;
+			productReference = B954A2B66DBDE38D1D254D541963CF44 /* CircleMenu.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6219DF6E98D426917D7E30DF09205A26 /* Pods-SmileSelfie */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B53B5D49CF424AF1D10F3393CA9FC097 /* Build configuration list for PBXNativeTarget "Pods-SmileSelfie" */;
+			buildPhases = (
+				5857F2886A7FAD9414F574CBECD8DF1B /* Headers */,
+				3033330B21707A82D87F51BA959BE9AE /* Sources */,
+				DE0A7701B4EDCA665158C405214AB8F5 /* Frameworks */,
+				5FAB0ACF438E0E7FFDF5FA540E23ADC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8966652D15F75DEB59BC841AE6B0E15A /* PBXTargetDependency */,
+			);
 			name = "Pods-SmileSelfie";
 			productName = "Pods-SmileSelfie";
-			productReference = 601DAA09ECB8F71D242A97989A6A1A83 /* Pods_SmileSelfie.framework */;
+			productReference = F10651E69ED7EB4FD590CF614A9615FF /* Pods_SmileSelfie.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -149,17 +246,25 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = E003BC1B2294CEF9BB39E0DBFFB8DC39 /* Products */;
+			productRefGroup = 14C42E72E981AEB431ECFE19B97CC8CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2DFA0D7386F3DFB82A31A5F0C7AC4D7A /* Pods-SmileSelfie */,
+				404A878F123C2A9D0A6C2101BF182D8E /* CircleMenu */,
+				6219DF6E98D426917D7E30DF09205A26 /* Pods-SmileSelfie */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		584F47D74EC82F392225F94AEAD8EF45 /* Resources */ = {
+		56E198011065CA81EE9760ED73275FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FAB0ACF438E0E7FFDF5FA540E23ADC5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -169,17 +274,110 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B000E0ADAFC766A86945E8C991C26A58 /* Sources */ = {
+		3033330B21707A82D87F51BA959BE9AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D750F1CAE81AA21BE5AC76B9C29FCF7 /* Pods-SmileSelfie-dummy.m in Sources */,
+				4F54F9B502B4896C515B434EBC4EBB30 /* Pods-SmileSelfie-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5FB357E559986949727E81982A0B22A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B5458A16C13CA962537FD4E6F39241 /* CircleMenu-dummy.m in Sources */,
+				EC523D1063B29819446098D6301CD93F /* CircleMenu.swift in Sources */,
+				CF4716A38BE409DBD4867C76ACDC8D09 /* CircleMenuButton.swift in Sources */,
+				5B05B8B3A902DAE2EF8BAB0730405435 /* CircleMenuLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		8966652D15F75DEB59BC841AE6B0E15A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CircleMenu;
+			target = 404A878F123C2A9D0A6C2101BF182D8E /* CircleMenu */;
+			targetProxy = 471F0F72361C31E43657A01D560ACF06 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		27860D52FF1356575642BA3EFE132A64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFCF9EE6A85DC2A5D25DB57C1FB3EB58 /* CircleMenu.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CircleMenu/CircleMenu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CircleMenu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CircleMenu/CircleMenu.modulemap";
+				PRODUCT_MODULE_NAME = CircleMenu;
+				PRODUCT_NAME = CircleMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		73F2A9AB7DD337A215E1D05F6B87A83F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AF243470CC0BE9328A9C70B9F988763 /* Pods-SmileSelfie.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SmileSelfie/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		751E926C9FFA061EC685CA6FF4E728E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -246,7 +444,43 @@
 			};
 			name = Debug;
 		};
-		D34D52BAD6AE2D4F29AF1CBD2247E2B5 /* Release */ = {
+		CD26B776285C45A6DB8A9702A8483AA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFCF9EE6A85DC2A5D25DB57C1FB3EB58 /* CircleMenu.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CircleMenu/CircleMenu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CircleMenu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CircleMenu/CircleMenu.modulemap";
+				PRODUCT_MODULE_NAME = CircleMenu;
+				PRODUCT_NAME = CircleMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E083A0EFA09FD0B6020D1949B98E8298 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 989175102769C2E713F536D02E118B03 /* Pods-SmileSelfie.release.xcconfig */;
 			buildSettings = {
@@ -284,44 +518,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		E5B92E874E21E9377D0F5047E28ECB8B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AF243470CC0BE9328A9C70B9F988763 /* Pods-SmileSelfie.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SmileSelfie/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		FB9D6A439C6489A023298D9B267B8F59 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -397,11 +593,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E21FA5782925C8ED31C85E7DC434FF68 /* Build configuration list for PBXNativeTarget "Pods-SmileSelfie" */ = {
+		B53B5D49CF424AF1D10F3393CA9FC097 /* Build configuration list for PBXNativeTarget "Pods-SmileSelfie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E5B92E874E21E9377D0F5047E28ECB8B /* Debug */,
-				D34D52BAD6AE2D4F29AF1CBD2247E2B5 /* Release */,
+				73F2A9AB7DD337A215E1D05F6B87A83F /* Debug */,
+				E083A0EFA09FD0B6020D1949B98E8298 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE1279B6A9A60675583895C0B31AEEC8 /* Build configuration list for PBXNativeTarget "CircleMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27860D52FF1356575642BA3EFE132A64 /* Debug */,
+				CD26B776285C45A6DB8A9702A8483AA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

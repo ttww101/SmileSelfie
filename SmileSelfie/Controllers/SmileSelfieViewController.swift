@@ -9,8 +9,10 @@
 import UIKit
 import AVFoundation
 import Vision
+import CircleMenu
 
-class SmileSelfieViewController: UIViewController {
+class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
+    
     
     //UI
     @IBOutlet var faceView: FaceView!
@@ -20,6 +22,8 @@ class SmileSelfieViewController: UIViewController {
     @IBOutlet var flashButton: UIButton!
     @IBOutlet var modeButton: UIButton!
     @IBOutlet var camChangeButton: UIButton!
+    @IBOutlet var manualShotButton: UIButton!
+    @IBOutlet weak var timeIntervalCircleMenuButton: CircleMenu!
     
     //capture session
     let captureSession = AVCaptureSession()
@@ -70,7 +74,6 @@ class SmileSelfieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setup()
     }
     
@@ -79,13 +82,26 @@ class SmileSelfieViewController: UIViewController {
         previewLayer.frame = view.bounds
     }
     
+    let items: [(icon: String, color: UIColor)] = [
+        ("number_3", UIColor.clear),
+        ("number_5", UIColor.clear),
+        ("number_10", UIColor.clear),
+    ]
+    
     private func setup() {
         configureCaptureSession()
         captureSession.startRunning()
+        self.manualShotButton.imageView?.contentMode = .scaleAspectFit
+        self.manualShotButton.contentVerticalAlignment = .fill
+        self.manualShotButton.contentHorizontalAlignment = .fill
+        
+        //ui
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[0].icon), for: .normal)
+        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[0].icon), for: .selected)
     }
     
     //MARK: IBActions
@@ -112,6 +128,18 @@ class SmileSelfieViewController: UIViewController {
     @IBAction func modeButtonDidTouchupInside(_ sender: Any) {
         self.isDrawFaceOutLine.toggle()
         self.modeButton.isSelected.toggle()
+        if (self.modeButton.isSelected) {
+        } else {
+//            self.modeButton.imageView?.tintAdjustmentMode = self.modeButton.isSelected ? .dimmed : .dimmed
+//            let image = UIImage().withRenderingMode(.alwaysTemplate)
+//            self.modeButton.setImage(image, for: .normal)
+//            self.modeButton.tintColor = .white
+//            let stencil = UIImage().maskWith(color: .white).withRenderingMode(.alwaysTemplate)
+//            self.modeButton.setImage(stencil, for: .normal) // assign it to your UIButton
+//            self.modeButton.tintColor = UIColor.white // set a color
+//            self.modeButton.imageView?.image?.maskWith(color: .white)
+//            self.modeButton.imageView?.tintColorDidChange()
+        }
     }
     
     @IBAction func collentionButtonDidTouchupInside(_ sender: Any) {
@@ -120,13 +148,11 @@ class SmileSelfieViewController: UIViewController {
     @IBAction func autoButtonDidTouchupInside(_ sender: Any) {
         self.isAuto.toggle()
         self.autoButton.isSelected.toggle()
+        self.timeIntervalCircleMenuButton.isHidden = !isAuto
     }
     
     @IBAction func manualShotButtonDidTouchUpInside(_ sender: UIButton) {
         self.saveToCamera()
-    }
-    
-    @IBAction func countDownButtonDidTouchupInside(_ sender: Any) {
     }
     
     @IBAction func camChangeButtonDidTouchUpInside(_ sender: Any) {
@@ -434,3 +460,40 @@ extension SmileSelfieViewController {
     }
 }
 
+//
+extension SmileSelfieViewController {
+    func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
+        
+        button.backgroundColor = items[atIndex].color
+        button.setImage(UIImage(named: items[atIndex].icon), for: .normal)
+        
+        // set highlited image
+        let highlightedImage = UIImage(named: items[atIndex].icon)?.withRenderingMode(.alwaysTemplate)
+        button.setImage(highlightedImage, for: .highlighted)
+        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+    }
+    
+    func circleMenu(_: CircleMenu, buttonWillSelected _: UIButton, atIndex: Int) {
+        
+    }
+    
+    func circleMenu(_: CircleMenu, buttonDidSelected _: UIButton, atIndex: Int) {
+        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[atIndex].icon), for: .normal)
+        self.timeIntervalCircleMenuButton.setImage(UIImage(named: items[atIndex].icon), for: .selected)
+        switch atIndex {
+        case 0:
+            self.smileTimeInterval = 3
+            break
+            
+        case 1:
+            self.smileTimeInterval = 5
+            break
+            
+        case 2:
+            self.smileTimeInterval = 10
+            break
+            
+        default: break
+        }
+    }
+}

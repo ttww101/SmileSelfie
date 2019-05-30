@@ -6,5 +6,6 @@ target 'SmileSelfie' do
   use_frameworks!
 
   # Pods for SmileSelfie
+  pod 'CircleMenu'
 
 end

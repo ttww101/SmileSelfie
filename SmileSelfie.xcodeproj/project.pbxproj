@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D5BC69093A65C03534B1BE4 /* Pods_SmileSelfie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07DC2225E2212999C8907B1 /* Pods_SmileSelfie.framework */; };
+		942927FE229FB04700C34915 /* UIImage+mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942927FD229FB04700C34915 /* UIImage+mask.swift */; };
 		9439C969229E2F3B0009CF8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C968229E2F3B0009CF8D /* AppDelegate.swift */; };
 		9439C96B229E2F3B0009CF8D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439C96A229E2F3B0009CF8D /* HomeViewController.swift */; };
 		9439C96E229E2F3B0009CF8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9439C96C229E2F3B0009CF8D /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		0A36EDEE773F5C557D90E77D /* Pods-SmileSelfie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmileSelfie.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.release.xcconfig"; sourceTree = "<group>"; };
 		65816FFAC30AA51F8EDAB604 /* Pods-SmileSelfie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmileSelfie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie.debug.xcconfig"; sourceTree = "<group>"; };
+		942927FD229FB04700C34915 /* UIImage+mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+mask.swift"; sourceTree = "<group>"; };
 		9439C965229E2F3B0009CF8D /* SmileSelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmileSelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9439C968229E2F3B0009CF8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9439C96A229E2F3B0009CF8D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 				94825556229E460300ADAFB6 /* Extensions */,
 				9439C968229E2F3B0009CF8D /* AppDelegate.swift */,
 				9439C96C229E2F3B0009CF8D /* Main.storyboard */,
-				94825553229E439000ADAFB6 /* Classes */,
+				94825553229E439000ADAFB6 /* View */,
 				9482554F229E359300ADAFB6 /* Controllers */,
 				94825550229E3E2300ADAFB6 /* CapturePhoto */,
 				9439C96F229E2F3C0009CF8D /* Assets.xcassets */,
@@ -110,12 +112,12 @@
 			path = CapturePhoto;
 			sourceTree = "<group>";
 		};
-		94825553229E439000ADAFB6 /* Classes */ = {
+		94825553229E439000ADAFB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				94825554229E43B300ADAFB6 /* FaceView.swift */,
 			);
-			path = Classes;
+			path = View;
 			sourceTree = "<group>";
 		};
 		94825556229E460300ADAFB6 /* Extensions */ = {
@@ -123,6 +125,7 @@
 			children = (
 				94825557229E462100ADAFB6 /* CoreGraphicsExtensions.swift */,
 				94825559229E466B00ADAFB6 /* UIView+CornerRadius.swift */,
+				942927FD229FB04700C34915 /* UIImage+mask.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				9439C961229E2F3B0009CF8D /* Sources */,
 				9439C962229E2F3B0009CF8D /* Frameworks */,
 				9439C963229E2F3B0009CF8D /* Resources */,
+				85B3A37AD4B24CAC988FAD22 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,6 +207,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		85B3A37AD4B24CAC988FAD22 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CircleMenu/CircleMenu.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CircleMenu.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmileSelfie/Pods-SmileSelfie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B53885B216486AD89168EB40 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +263,7 @@
 				94825552229E3E4900ADAFB6 /* CameraCaptureOutput.swift in Sources */,
 				9439C969229E2F3B0009CF8D /* AppDelegate.swift in Sources */,
 				94825555229E43B300ADAFB6 /* FaceView.swift in Sources */,
+				942927FE229FB04700C34915 /* UIImage+mask.swift in Sources */,
 				9482555A229E466B00ADAFB6 /* UIView+CornerRadius.swift in Sources */,
 				94825558229E462100ADAFB6 /* CoreGraphicsExtensions.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fSH-20-vDp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ejf-9c-VpQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="943" y="686"/>
         </scene>
-        <!--Smile Selfie View Controller-->
+        <!--Delegate-->
         <scene sceneID="bWD-U8-6Sh">
             <objects>
                 <viewController storyboardIdentifier="SmileSelfieViewController" id="Ejf-9c-VpQ" customClass="SmileSelfieViewController" customModule="SmileSelfie" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,38 +49,35 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIP-gF-PTx" customClass="FaceView" customModule="SmileSelfie" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEd-xY-upR">
-                                        <rect key="frame" x="323" y="579" width="36" height="30"/>
-                                        <state key="normal" title="Front"/>
-                                        <state key="selected" title="Back"/>
-                                        <connections>
-                                            <action selector="camChangeButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="kWP-5x-EFk"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgG-ac-Sp2">
-                                        <rect key="frame" x="144.5" y="579" width="86" height="30"/>
-                                        <state key="normal" title="Manual Shot"/>
-                                        <connections>
-                                            <action selector="manualShotButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="cuX-D5-yNM"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df0-Ra-msG">
-                                <rect key="frame" x="309" y="20" width="50" height="30"/>
+                                <rect key="frame" x="309" y="20" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Normal"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="VGD-fo-Ikr"/>
+                                    <constraint firstAttribute="height" constant="50" id="cFT-2P-681"/>
+                                </constraints>
+                                <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Normal">
+                                    <color key="titleColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <state key="selected" title="Outline"/>
                                 <connections>
                                     <action selector="modeButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="hLc-QV-sHP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Kr-rS-mgg">
-                                <rect key="frame" x="16" y="20" width="43" height="30"/>
+                                <rect key="frame" x="16" y="20" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="N Live"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6BV-AH-hAo"/>
+                                    <constraint firstAttribute="width" constant="50" id="odc-Rd-Sec"/>
+                                </constraints>
+                                <color key="tintColor" red="0.94509803921568625" green="0.76862745098039209" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Live">
+                                    <color key="titleColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <state key="selected" title="Live">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -88,62 +85,134 @@
                                     <action selector="liveButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="cA6-87-8aM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kO4-Xm-0jz">
-                                <rect key="frame" x="156.5" y="20" width="62" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Flash Off"/>
-                                <state key="selected" title="Flash On"/>
-                                <connections>
-                                    <action selector="flashButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Lo1-pF-2hk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVk-T9-euo">
-                                <rect key="frame" x="16" y="617" width="69" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Collection"/>
-                                <connections>
-                                    <action selector="collentionButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="fed-Lw-5f5"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s1-2R-AhN">
-                                <rect key="frame" x="171.5" y="617" width="32" height="30"/>
+                                <rect key="frame" x="162.5" y="527" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Qsf-Xv-LYR"/>
+                                    <constraint firstAttribute="width" constant="50" id="gQM-vy-zyo"/>
+                                </constraints>
+                                <color key="tintColor" red="0.15686274510000001" green="0.84705882349999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Auto"/>
                                 <state key="selected" title="Manual"/>
                                 <connections>
                                     <action selector="autoButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Kzj-dF-p4b"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5i-jM-ojy">
-                                <rect key="frame" x="321" y="617" width="38" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5i-jM-ojy" customClass="CircleMenu" customModule="CircleMenu">
+                                <rect key="frame" x="169.5" y="491" width="36" height="36"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="3 sec"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="1Bq-rl-L4U"/>
+                                    <constraint firstAttribute="height" constant="36" id="iM5-ch-EHJ"/>
+                                </constraints>
+                                <state key="selected">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonsCount">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="distance">
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="showDelay">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                        <real key="value" value="270"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endAngle">
+                                        <real key="value" value="359"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="countDownButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="47U-PN-pEO"/>
+                                    <outlet property="delegate" destination="Ejf-9c-VpQ" id="PhT-Gf-rCo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kO4-Xm-0jz">
+                                <rect key="frame" x="162.5" y="20" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Teg-HA-nb3"/>
+                                    <constraint firstAttribute="width" constant="50" id="kEr-Ep-Rq3"/>
+                                </constraints>
+                                <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <state key="normal" image="flash_off"/>
+                                <state key="selected" image="flash_on">
+                                    <color key="titleShadowColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="Lo1-pF-2hk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVk-T9-euo">
+                                <rect key="frame" x="16" y="590" width="44" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="N5a-Kb-S3e"/>
+                                    <constraint firstAttribute="width" constant="44" id="m5c-qO-sqh"/>
+                                </constraints>
+                                <color key="tintColor" red="0.15686274510000001" green="0.84705882349999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="7" maxX="0.0" maxY="3"/>
+                                <state key="normal" title="Collection" image="gallery"/>
+                                <connections>
+                                    <action selector="collentionButtonDidTouchupInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="fed-Lw-5f5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgG-ac-Sp2">
+                                <rect key="frame" x="152.5" y="577" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="KFZ-G1-ccZ"/>
+                                    <constraint firstAttribute="width" constant="70" id="tiB-Xo-2WC"/>
+                                </constraints>
+                                <state key="normal" image="manual_shot"/>
+                                <connections>
+                                    <action selector="manualShotButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="cuX-D5-yNM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEd-xY-upR">
+                                <rect key="frame" x="315" y="590" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="rRn-lG-oJj"/>
+                                    <constraint firstAttribute="height" constant="44" id="wwz-mk-lPW"/>
+                                </constraints>
+                                <color key="tintColor" red="0.15686274510000001" green="0.84705882349999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="cam_change"/>
+                                <state key="selected" image="cam_change"/>
+                                <connections>
+                                    <action selector="camChangeButtonDidTouchUpInside:" destination="Ejf-9c-VpQ" eventType="touchUpInside" id="kWP-5x-EFk"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2s1-2R-AhN" firstAttribute="centerX" secondItem="HgG-ac-Sp2" secondAttribute="centerX" id="0Wc-Ky-sS6"/>
                             <constraint firstAttribute="bottom" secondItem="JIP-gF-PTx" secondAttribute="bottom" id="1De-pe-eVO"/>
                             <constraint firstItem="nVk-T9-euo" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="5fE-la-tKH"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="df0-Ra-msG" secondAttribute="trailing" constant="16" id="7Lc-xm-yIM"/>
+                            <constraint firstItem="WEd-xY-upR" firstAttribute="centerY" secondItem="HgG-ac-Sp2" secondAttribute="centerY" id="8yM-3Z-Xyz"/>
+                            <constraint firstItem="HgG-ac-Sp2" firstAttribute="centerX" secondItem="3Ca-Ey-jD3" secondAttribute="centerX" id="9kO-bj-Z4Q"/>
+                            <constraint firstItem="X5i-jM-ojy" firstAttribute="centerX" secondItem="2s1-2R-AhN" secondAttribute="centerX" id="AlU-PZ-IMZ"/>
                             <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="JIP-gF-PTx" secondAttribute="trailing" id="Cp2-AD-Wfo"/>
                             <constraint firstItem="kO4-Xm-0jz" firstAttribute="centerX" secondItem="3Ca-Ey-jD3" secondAttribute="centerX" id="NRp-PJ-sMk"/>
                             <constraint firstItem="df0-Ra-msG" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="OHA-t5-NkZ"/>
-                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="nVk-T9-euo" secondAttribute="bottom" constant="20" id="PhO-hE-PSF"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" id="QH3-Wj-L21"/>
-                            <constraint firstItem="2s1-2R-AhN" firstAttribute="top" secondItem="HgG-ac-Sp2" secondAttribute="bottom" constant="8" id="TtR-lm-gE1"/>
-                            <constraint firstItem="WEd-xY-upR" firstAttribute="trailing" secondItem="X5i-jM-ojy" secondAttribute="trailing" id="aGz-IE-9Gc"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="leading" secondItem="3Ca-Ey-jD3" secondAttribute="leading" constant="16" id="bWz-15-q9G"/>
-                            <constraint firstItem="X5i-jM-ojy" firstAttribute="top" secondItem="WEd-xY-upR" secondAttribute="bottom" constant="8" id="gNO-l7-mGk"/>
+                            <constraint firstItem="HgG-ac-Sp2" firstAttribute="top" secondItem="2s1-2R-AhN" secondAttribute="bottom" id="c8s-Uo-9yu"/>
+                            <constraint firstItem="nVk-T9-euo" firstAttribute="centerY" secondItem="HgG-ac-Sp2" secondAttribute="centerY" id="dBL-wX-g5S"/>
                             <constraint firstItem="2Kr-rS-mgg" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="lHB-8x-qbi"/>
                             <constraint firstItem="JIP-gF-PTx" firstAttribute="top" secondItem="JoO-wr-gb8" secondAttribute="top" id="o39-xV-TQv"/>
-                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="2s1-2R-AhN" secondAttribute="bottom" constant="20" id="pZ4-Ki-NaY"/>
-                            <constraint firstItem="HgG-ac-Sp2" firstAttribute="centerX" secondItem="2s1-2R-AhN" secondAttribute="centerX" id="tDO-Z3-8Bx"/>
+                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="HgG-ac-Sp2" secondAttribute="bottom" constant="20" id="qRA-br-aPl"/>
+                            <constraint firstItem="2s1-2R-AhN" firstAttribute="top" secondItem="X5i-jM-ojy" secondAttribute="bottom" id="qoP-9c-8tG"/>
+                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="WEd-xY-upR" secondAttribute="trailing" constant="16" id="tBK-4B-stE"/>
                             <constraint firstItem="kO4-Xm-0jz" firstAttribute="top" secondItem="3Ca-Ey-jD3" secondAttribute="top" id="tia-Y5-gVb"/>
-                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="bottom" secondItem="X5i-jM-ojy" secondAttribute="bottom" constant="20" id="tx8-QS-MRK"/>
-                            <constraint firstItem="3Ca-Ey-jD3" firstAttribute="trailing" secondItem="X5i-jM-ojy" secondAttribute="trailing" constant="16" id="u7q-Kd-K9f"/>
-                            <constraint firstItem="2s1-2R-AhN" firstAttribute="centerX" secondItem="3Ca-Ey-jD3" secondAttribute="centerX" id="wDP-6C-KGC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Ca-Ey-jD3"/>
                     </view>
@@ -154,7 +223,9 @@
                         <outlet property="faceView" destination="JIP-gF-PTx" id="Hoz-sU-bw1"/>
                         <outlet property="flashButton" destination="kO4-Xm-0jz" id="ch3-xT-X2S"/>
                         <outlet property="liveButton" destination="2Kr-rS-mgg" id="5qh-wo-TXE"/>
+                        <outlet property="manualShotButton" destination="HgG-ac-Sp2" id="xIm-aD-t9k"/>
                         <outlet property="modeButton" destination="df0-Ra-msG" id="CfI-oa-5qf"/>
+                        <outlet property="timeIntervalCircleMenuButton" destination="X5i-jM-ojy" id="gCi-nM-d3W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvf-2H-3UU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,4 +251,11 @@
             <point key="canvasLocation" x="165.59999999999999" y="685.90704647676171"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cam_change" width="48" height="48"/>
+        <image name="flash_off" width="50" height="50"/>
+        <image name="flash_on" width="50" height="50"/>
+        <image name="gallery" width="50" height="50"/>
+        <image name="manual_shot" width="50" height="50"/>
+    </resources>
 </document>
