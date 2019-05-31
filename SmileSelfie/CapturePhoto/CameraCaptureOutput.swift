@@ -13,6 +13,8 @@ class CameraCaptureOutput: NSObject, AVCapturePhotoCaptureDelegate {
     
     let cameraOutput = AVCapturePhotoOutput()
     
+    var currentDevicePosition:AVCaptureDevice.Position = .front
+    
     var flashMode: AVCaptureDevice.FlashMode = .off
     
     var captureCompletion: ((UIImage?) -> ())? = nil
@@ -38,8 +40,17 @@ class CameraCaptureOutput: NSObject, AVCapturePhotoCaptureDelegate {
             //          print(UIImage(data: dataImage)?.size) // Your Image
             if let completion = self.captureCompletion {
                 if let image = UIImage(data: dataImage), let cgImage = image.cgImage {
-                    let flippedImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
-                    completion(flippedImage)
+                    var completionImage: UIImage? = nil
+                    switch currentDevicePosition {
+                    case .back:
+                        completionImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: .right)
+                        break
+                        
+                    default:
+                        completionImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
+                        break
+                    }
+                    completion(completionImage)
                 }
             }
         }

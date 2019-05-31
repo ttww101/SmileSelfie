@@ -7,5 +7,6 @@ target 'SmileSelfie' do
 
   # Pods for SmileSelfie
   pod 'CircleMenu'
+  pod 'YPImagePicker'
 
 end
