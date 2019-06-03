@@ -34,6 +34,8 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         qos: .userInitiated,
         attributes: [],
         autoreleaseFrequency: .workItem)
+    var cameraInput: AVCaptureDeviceInput!
+    var audioInput: AVCaptureInput? = nil
     let cameraOutput = CameraCaptureOutput()
     
     //smile
@@ -58,7 +60,6 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     var imagePicker: UIImagePickerController!
     
     //button control feature
-    var isLive: Bool = false
     var isFlash: Bool = false
     var isDrawFaceOutLine: Bool = false
     var isAuto: Bool = false
@@ -88,7 +89,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.manualShotButton.contentVerticalAlignment = .fill
         self.manualShotButton.contentHorizontalAlignment = .fill
         
-        self.timeIntervalCircleMenuButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 10, right: 12)
+//        self.timeIntervalCircleMenuButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 10, right: 12)
         
         //ui
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -98,12 +99,16 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     }
     
     //MARK: IBActions
-    @IBAction func liveButtonDidTouchupInside(_ sender: Any) {
-        self.liveButton.isSelected.toggle()
+    @IBAction func liveButtonDidTouchupInside(_ sender: UIButton) {
         if (self.cameraOutput.cameraOutput.isLivePhotoCaptureSupported) {
-            self.captureSession.beginConfiguration()
+            self.liveButton.isSelected.toggle()
             self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled.toggle()
+            
+            //config camera output
+            self.captureSession.beginConfiguration()
+            self.configureAudioInput()
             self.captureSession.commitConfiguration()
+            
         } else {
             print("Live Photo Not Supported")
         }
@@ -124,53 +129,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     }
     
     @IBAction func collentionButtonDidTouchupInside(_ sender: Any) {
-//        imagePicker =  UIImagePickerController()
-//        imagePicker.delegate = self
-//        imagePicker.sourceType = .photoLibrary
-//        present(imagePicker, animated: true, completion: nil)
-        
-        var config = YPImagePickerConfiguration()
-        config.isScrollToChangeModesEnabled = true
-        config.onlySquareImagesFromCamera = true
-        config.usesFrontCamera = false
-        config.showsFilters = true
-        config.shouldSaveNewPicturesToAlbum = true
-        config.albumName = "Smile Selfie"
-        config.startOnScreen = YPPickerScreen.library
-        config.screens = [.library]
-        config.targetImageSize = YPImageSize.original
-        config.overlayView = UIView()
-        config.hidesStatusBar = true
-        config.hidesBottomBar = true
-        config.preferredStatusBarStyle = UIStatusBarStyle.default
-        config.bottomMenuItemSelectedColour = UIColor.hexColor(with: "28D8B8")
-        config.bottomMenuItemUnSelectedColour = UIColor.hexColor(with: "F1C40F")
-        // [Edit configuration here ...]
-        // Build a picker with your configuration
-        config.library.options = nil
-        config.library.onlySquare = false
-        config.library.minWidthForItem = nil
-        config.library.mediaType = YPlibraryMediaType.photo
-        config.library.maxNumberOfItems = 1
-        config.library.minNumberOfItems = 1
-        config.library.numberOfItemsInRow = 4
-        config.library.spacingBetweenItems = 1.0
-        config.library.skipSelectionsGallery = false
-        
-        YPImagePickerConfiguration.shared = config
-        
-        let picker = YPImagePicker(configuration: config)
-        picker.didFinishPicking { [unowned picker] items, _ in
-            if let photo = items.singlePhoto {
-                picker.dismiss(animated: true, completion: {
-                    self.savePhotoAnimation(with: photo.image)
-                })
-            } else {
-                picker.dismiss(animated: true, completion: nil)
-            }
-            
-        }
-        present(picker, animated: true, completion: nil)
+       self.presentImagePicker()
     }
     
     @IBAction func manualShotButtonDidTouchUpInside(_ sender: UIButton) {
@@ -201,8 +160,51 @@ extension SmileSelfieViewController {
         }) { (completion) in
             completionImageView.frame = self.collectionButton.frame
             completionImageView.layer.borderWidth = 0.5
-            print("end")
         }
+    }
+    
+    func presentImagePicker() {
+        var config = YPImagePickerConfiguration()
+        config.isScrollToChangeModesEnabled = true
+        config.onlySquareImagesFromCamera = true
+        config.usesFrontCamera = false
+        config.showsFilters = true
+        config.shouldSaveNewPicturesToAlbum = true
+        config.albumName = "Smile Selfie Fliter"
+        config.startOnScreen = YPPickerScreen.library
+        config.screens = [.library]
+        config.targetImageSize = YPImageSize.original
+        config.overlayView = UIView()
+        config.hidesStatusBar = true
+        config.hidesBottomBar = true
+        config.preferredStatusBarStyle = UIStatusBarStyle.default
+        config.bottomMenuItemSelectedColour = UIColor.hexColor(with: "28D8B8")
+        config.bottomMenuItemUnSelectedColour = UIColor.hexColor(with: "F1C40F")
+        
+        config.library.options = nil
+        config.library.onlySquare = false
+        config.library.minWidthForItem = nil
+        config.library.mediaType = YPlibraryMediaType.photo
+        config.library.maxNumberOfItems = 1
+        config.library.minNumberOfItems = 1
+        config.library.numberOfItemsInRow = 4
+        config.library.spacingBetweenItems = 1.0
+        config.library.skipSelectionsGallery = false
+        
+        YPImagePickerConfiguration.shared = config
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                picker.dismiss(animated: true, completion: {
+                    self.savePhotoAnimation(with: photo.image)
+                })
+            } else {
+                picker.dismiss(animated: true, completion: nil)
+            }
+            
+        }
+        present(picker, animated: true, completion: nil)
     }
 }
 
@@ -214,21 +216,12 @@ extension SmileSelfieViewController {
     private func configureCaptureSession() {
         
         captureSession.sessionPreset = .photo
+       
+        //add input
+        self.addCameraInput()
+        self.configureAudioInput()
         
-        guard
-            let camera = cameraWithPosition(position: .front)
-            else {
-                fatalError("No front video camera available")
-        }
-        
-        do {
-            let cameraInput = try AVCaptureDeviceInput(device: camera)
-            captureSession.addInput(cameraInput)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-        
-        //add out put
+        //add output
         self.addFaceDetectOutput()
         self.addCameraOutput()
         
@@ -237,6 +230,76 @@ extension SmileSelfieViewController {
         previewLayer.videoGravity = .resizeAspectFill
         previewLayer.frame = view.bounds
         view.layer.insertSublayer(previewLayer, at: 0)
+    }
+    
+    private func addCameraInput() {
+        guard
+            let camera = cameraWithPosition(position: .front)
+            else {
+                fatalError("No front video camera available")
+        }
+        
+        do {
+            self.cameraInput = try AVCaptureDeviceInput(device: camera)
+            captureSession.addInput(self.cameraInput)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    private func changeCamera() {
+        let session = self.captureSession
+        session.beginConfiguration()
+        
+        //Get new input
+        var newCamera: AVCaptureDevice! = nil
+        if (self.cameraInput.device.position == .back) {
+            newCamera = cameraWithPosition(position: .front)
+        } else {
+            newCamera = cameraWithPosition(position: .back)
+        }
+        
+        //Remove & Add input to session
+        do {
+            session.removeInput(self.cameraInput)
+            self.cameraInput = try AVCaptureDeviceInput(device: newCamera)
+            session.addInput(self.cameraInput)
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+        self.configureAudioInput()
+        self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled = self.liveButton.isSelected
+        print("live photo enabled:\(self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled)")
+        session.commitConfiguration()
+    }
+    
+    private func cameraWithPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
+        for device in discoverySession.devices {
+            if device.position == position {
+                return device
+            }
+        }
+        
+        return nil
+    }
+    
+    private func configureAudioInput() {
+        if self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled {
+            guard
+                let audioDevice = AVCaptureDevice.default(for: .audio),
+                let audioDeviceInput = try? AVCaptureDeviceInput(device: audioDevice),
+                self.captureSession.canAddInput(audioDeviceInput)
+                else { return }
+            self.audioInput = audioDeviceInput
+            self.captureSession.addInput(audioDeviceInput)
+        } else {
+            guard
+                let audioInput = self.audioInput
+                else { return }
+            self.captureSession.removeInput(audioInput)
+        }
     }
     
     private func addFaceDetectOutput() {
@@ -253,7 +316,6 @@ extension SmileSelfieViewController {
     
     private func addCameraOutput() {
         self.cameraOutput.cameraOutput.isHighResolutionCaptureEnabled = true
-        self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled = false
         self.captureSession.addOutput(self.cameraOutput.cameraOutput)
     }
 }
@@ -438,10 +500,13 @@ extension SmileSelfieViewController {
     }
     
     private func saveToCamera() {
+        print("save live photo:\(self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled)")
         DispatchQueue.main.async {
             self.cameraOutput.captureCompletion = { (image) in
                 self.smileImage = image
-                UIImageWriteToSavedPhotosAlbum(image!, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                if (!self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled) {
+                    UIImageWriteToSavedPhotosAlbum(image!, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                }
             }
             guard let cameraInput = self.captureSession.inputs.first as? AVCaptureDeviceInput  else {
                 return
@@ -453,70 +518,13 @@ extension SmileSelfieViewController {
     
     //MARK: - Add image to Library
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        
+        print("saved photo")
         if let error = error {
             let ac = UIAlertController(title: "Save Photo Error", message: error.localizedDescription, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         }
-    }
-    
-    private func changeCamera() {
-        let session = self.captureSession
-        session.beginConfiguration()
-        
-        //Remove existing input
-        guard let currentCameraInput: AVCaptureInput = session.inputs.first else {
-            return
-        }
-        
-        //Get new input
-        var newCamera: AVCaptureDevice! = nil
-        guard let input = currentCameraInput as? AVCaptureDeviceInput else { return }
-        if (input.device.position == .back) {
-            newCamera = cameraWithPosition(position: .front)
-        } else {
-            newCamera = cameraWithPosition(position: .back)
-        }
-        
-        //Add input to session
-        var err: NSError?
-        var newCameraInput: AVCaptureDeviceInput!
-        do {
-            newCameraInput = try AVCaptureDeviceInput(device: newCamera)
-        } catch let err1 as NSError {
-            err = err1
-            newCameraInput = nil
-        }
-        
-        if newCameraInput == nil || err != nil {
-            print("Error creating capture device input: \(String(describing: err?.localizedDescription))")
-        } else {
-            session.removeInput(currentCameraInput)
-            session.addInput(newCameraInput)
-        }
-        
-        //Commit all the configuration changes at once
-        //Remove existing input
-        for output in session.outputs {
-            if output is AVCaptureVideoDataOutput {
-                session.removeOutput(output)
-                self.addFaceDetectOutput()
-            }
-        }
-        
-        session.commitConfiguration()
-    }
-    
-    private func cameraWithPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
-        
-        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
-        for device in discoverySession.devices {
-            if device.position == position {
-                return device
-            }
-        }
-        
-        return nil
     }
 }
 
@@ -536,12 +544,6 @@ extension SmileSelfieViewController {
             button.setImage(UIImage(named: items[atIndex].icon), for: .normal)
             button.imageEdgeInsets = self.timeIntervalCircleMenuButton.imageEdgeInsets
         }
-        
-        // set highlited image
-//        let highlightedImage = UIImage(named: items[atIndex].icon)?.withRenderingMode(.alwaysTemplate)
-//        button.setImage(highlightedImage, for: .highlighted)
-//        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-//        button.imageView?.contentMode = .scaleAspectFit
     }
     
     func circleMenu(_: CircleMenu, buttonWillSelected _: UIButton, atIndex: Int) {
