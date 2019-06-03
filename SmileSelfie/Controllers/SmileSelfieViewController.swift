@@ -37,6 +37,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     var cameraInput: AVCaptureDeviceInput!
     var audioInput: AVCaptureInput? = nil
     let cameraOutput = CameraCaptureOutput()
+    let videoOutput = AVCaptureVideoDataOutput()
     
     //smile
     var smileImage: UIImage? {
@@ -88,8 +89,6 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.manualShotButton.imageView?.contentMode = .scaleAspectFit
         self.manualShotButton.contentVerticalAlignment = .fill
         self.manualShotButton.contentHorizontalAlignment = .fill
-        
-//        self.timeIntervalCircleMenuButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 10, right: 12)
         
         //ui
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -269,8 +268,16 @@ extension SmileSelfieViewController {
         }
         self.configureAudioInput()
         self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled = self.liveButton.isSelected
-        print("live photo enabled:\(self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled)")
         session.commitConfiguration()
+        
+        guard let cameraInput = self.captureSession.inputs.first as? AVCaptureDeviceInput  else {
+            return
+        }
+        self.cameraOutput.currentDevicePosition = cameraInput.device.position
+        previewLayer.videoGravity = .resizeAspectFill
+        
+        let videoConnection = videoOutput.connection(with: .video)
+        videoConnection?.videoOrientation = .portrait
     }
     
     private func cameraWithPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
@@ -303,8 +310,8 @@ extension SmileSelfieViewController {
     }
     
     private func addFaceDetectOutput() {
-        let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.alwaysDiscardsLateVideoFrames = true
+//        let videoOutput = AVCaptureVideoDataOutput()
+//        videoOutput.alwaysDiscardsLateVideoFrames = true
         videoOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
         
@@ -508,10 +515,6 @@ extension SmileSelfieViewController {
                     UIImageWriteToSavedPhotosAlbum(image!, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 }
             }
-            guard let cameraInput = self.captureSession.inputs.first as? AVCaptureDeviceInput  else {
-                return
-            }
-            self.cameraOutput.currentDevicePosition = cameraInput.device.position
             self.cameraOutput.capturePhoto()
         }
     }
