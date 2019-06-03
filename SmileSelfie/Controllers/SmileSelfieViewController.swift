@@ -24,6 +24,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     @IBOutlet var camChangeButton: UIButton!
     @IBOutlet var manualShotButton: UIButton!
     @IBOutlet weak var timeIntervalCircleMenuButton: CircleMenu!
+    @IBOutlet weak var smilingImageView: UIImageView!
     
     //capture session
     let captureSession = AVCaptureSession()
@@ -52,6 +53,15 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     var isSmiling: Bool = false {
         didSet {
             self.configAutoSavingPhoto(with: isSmiling)
+            if isSmiling {
+                DispatchQueue.main.async {
+                    self.smilingImageView.tintColor = UIColor(red: 255/255, green: 126/255, blue: 121/255, alpha: 1.0)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.smilingImageView.tintColor = .clear
+                }
+            }
         }
     }
     var isAutoSavingPhoto: Bool = false
@@ -95,6 +105,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        self.smilingImageView.tintColor = .clear
     }
     
     //MARK: IBActions
