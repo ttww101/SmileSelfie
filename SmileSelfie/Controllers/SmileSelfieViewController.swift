@@ -88,12 +88,12 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         previewLayer.frame = view.bounds
     }
     
-    let items: [(icon: String, color: UIColor, title: String)] = [
-        ("", UIColor.clear, "1s"),
-        ("", UIColor.clear, "3s"),
-        ("manual", UIColor.clear, ""),
-        ("", UIColor.clear, "10s"),
-        ("", UIColor.clear, "15s"),
+    let items: [(icon: String, title: String, countDown: Int)] = [
+        ("", "1s", 1),
+        ("", "3s", 3),
+        ("manual", "", 666666666666666666),
+        ("", "5s", 5),
+        ("", "10s", 10),
     ]
     
     private func setup() {
@@ -325,8 +325,6 @@ extension SmileSelfieViewController {
     }
     
     private func addFaceDetectOutput() {
-//        let videoOutput = AVCaptureVideoDataOutput()
-//        videoOutput.alwaysDiscardsLateVideoFrames = true
         videoOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
         
@@ -371,16 +369,20 @@ extension SmileSelfieViewController: AVCaptureVideoDataOutputSampleBufferDelegat
     
     private func detectedFace(request: VNRequest, error: Error?) {
         
-        if (!isDrawFaceOutLine) { faceView.clear(); return }
-        
         guard
             let results = request.results as? [VNFaceObservation],
             let result = results.first
             else {
                 faceView.clear()
+                self.isSmiling = false
                 return
         }
-        drawFaceDetectOutLine(for: result)
+        if (!isDrawFaceOutLine) {
+            faceView.clear()
+            return
+        } else {
+            drawFaceDetectOutLine(for: result)
+        }
     }
     
     private func detectedSmile(with sampleBuffer: CMSampleBuffer) {
@@ -594,7 +596,7 @@ extension SmileSelfieViewController {
     
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         
-        button.backgroundColor = items[atIndex].color
+        button.backgroundColor = .clear
         button.setTitle(items[atIndex].title, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         if (atIndex == 2) {
@@ -614,28 +616,7 @@ extension SmileSelfieViewController {
     }
     
     func circleMenu(_: CircleMenu, buttonDidSelected _: UIButton, atIndex: Int) {
-        switch atIndex {
-        case 0:
-            self.smileTimeInterval = 1
-            break
-            
-        case 1:
-            self.smileTimeInterval = 3
-            break
-            
-        case 2:
-            break
-            
-        case 3:
-            self.smileTimeInterval = 10
-            break
-            
-        case 4:
-            self.smileTimeInterval = 15
-            break
-            
-        default: break
-        }
+        self.smileTimeInterval = self.items[atIndex].countDown
     }
 }
 
