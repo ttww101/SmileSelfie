@@ -25,6 +25,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     @IBOutlet var manualShotButton: UIButton!
     @IBOutlet weak var timeIntervalCircleMenuButton: CircleMenu!
     @IBOutlet weak var smilingImageView: UIImageView!
+    @IBOutlet weak var smilingCountDownLabel: UILabel!
     
     //capture session
     let captureSession = AVCaptureSession()
@@ -65,7 +66,9 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         }
     }
     var isAutoSavingPhoto: Bool = false
-    var smileTimeInterval: TimeInterval = 3
+    var smileTimeInterval: Int = 66666
+    var timer: DispatchSourceTimer? = nil
+    var timerTimeInterval: Int = 66666
     
     //imagePicker
     var imagePicker: UIImagePickerController!
@@ -106,6 +109,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
         self.smilingImageView.tintColor = .clear
+        self.smilingCountDownLabel.text = ""
     }
     
     //MARK: IBActions
@@ -499,26 +503,65 @@ extension SmileSelfieViewController {
 extension SmileSelfieViewController {
     
     private func configAutoSavingPhoto(with isSmiling: Bool) {
-        if !isAuto { return }
-        if !isSmiling { return }
+        if !isAuto || !isSmiling {
+            self.cancelSmileTimer()
+            return
+        }
         
         //auto saving
         if (self.isAutoSavingPhoto == false) {
-            self.isAutoSavingPhoto = true
-            //TODO: cancel when changing auto
-            DispatchQueue.main.asyncAfter(deadline: .now() + smileTimeInterval, execute: {
-                if !self.isSmiling || !self.isAuto {
-                    self.isAutoSavingPhoto = false
-                    return
+            //TODO: cancel when changing to manual
+            if (self.timer == nil) {
+                
+                self.isAutoSavingPhoto = true
+                
+                self.timerTimeInterval = self.smileTimeInterval
+                
+                self.timer = DispatchSource.makeTimerSource()
+                
+                self.timer?.schedule(deadline: .now(), repeating: .seconds(1))
+                
+                self.timer?.setEventHandler { [weak self] in
+                    self?.updateCounter()
                 }
-                self.saveToCamera()
+                
+                self.timer?.resume()
+            }
+        }
+    }
+    
+    @objc func updateCounter() {
+        let displayText = "\(self.timerTimeInterval/1)"
+        DispatchQueue.main.async {
+            self.smilingCountDownLabel.text = displayText
+        }
+        if self.timerTimeInterval > 0 {
+            //update counter
+            self.timerTimeInterval -= 1
+        } else if self.timerTimeInterval == 0 {
+             //save photo
+            if !self.isSmiling || !self.isAuto {
                 self.isAutoSavingPhoto = false
-            })
+                return
+            }
+            self.saveToCamera()
+            self.cancelSmileTimer()
+        }
+    }
+    
+    private func cancelSmileTimer() {
+        self.isAutoSavingPhoto = false
+        if let timer = self.timer {
+            timer.cancel()
+            self.timer = nil
+        }
+        DispatchQueue.main.async {
+            self.smilingCountDownLabel.text = ""
+            self.smilingImageView.tintColor = .clear
         }
     }
     
     private func saveToCamera() {
-        print("save live photo:\(self.cameraOutput.cameraOutput.isLivePhotoCaptureEnabled)")
         DispatchQueue.main.async {
             self.cameraOutput.captureCompletion = { (image) in
                 self.smileImage = image
