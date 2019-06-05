@@ -1,0 +1,6 @@
+framework module AwesomeIntroGuideView {
+  umbrella header "AwesomeIntroGuideView-umbrella.h"
+
+  export *
+  module * { export * }
+}

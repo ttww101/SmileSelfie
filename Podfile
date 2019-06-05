@@ -8,5 +8,7 @@ target 'SmileSelfie' do
   # Pods for SmileSelfie
   pod 'CircleMenu'
   pod 'YPImagePicker'
-
+  pod 'AwesomeIntroGuideView'
+  pod 'Masonry'
+  pod 'ZCAnimatedLabel'
 end

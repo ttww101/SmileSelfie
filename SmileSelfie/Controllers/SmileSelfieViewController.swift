@@ -11,10 +11,11 @@ import AVFoundation
 import Vision
 import CircleMenu
 import YPImagePicker
+import AwesomeIntroGuideView
+import Masonry
+import ZCAnimatedLabel
 
 class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
-    
-    
     //UI
     @IBOutlet var faceView: FaceView!
     @IBOutlet var collectionButton: UIButton!
@@ -78,9 +79,20 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     var isDrawFaceOutLine: Bool = false
     var isAuto: Bool = false
     
+    //guide
+    var coachMarksView: AwesomeIntroGuideView = AwesomeIntroGuideView()
+    var guideViewArr: [UIView] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.displayCoachView()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -110,6 +122,79 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.navigationController?.view.backgroundColor = UIColor.clear
         self.smilingImageView.tintColor = .clear
         self.smilingCountDownLabel.text = ""
+        
+        self.coachMarksView = self.createGuideView()
+        self.coachMarksView.insetSpacing = -10
+        self.coachMarksView.isEnableSkipButton = true
+        self.coachMarksView.isEnableContinueLabel = false
+        self.coachMarksView.animationDuration = 0.5
+        self.view.addSubview(self.coachMarksView)
+        let label = UILabel(frame: .zero)
+        label.text = "123"
+        label.sizeToFit()
+        self.navigationItem.titleView = label
+//        self.view.backgroundColor = .white
+    }
+    
+    private func displayCoachView() {
+        self.guideViewArr.append(self.timeIntervalCircleMenuButton)
+        self.guideViewArr.append(self.flashButton)
+        self.guideViewArr.append(self.modeButton)
+        self.guideViewArr.append(self.liveButton)
+        self.guideViewArr.append(self.collectionButton)
+        self.guideViewArr.append(self.camChangeButton)
+        self.guideViewArr.append(self.manualShotButton)
+        self.coachMarksView.loadMarks(self.guideViewArr)
+        self.coachMarksView.guideShape = .circle
+//        self.coachMarksView.loadGuideImageUrl("https://s10.mogucdn.com/p1/161027/idid_ifqtantemfstmzdemizdambqgyyde_483x337.png", with: CGPoint(x: 70, y: 100), redirectURL: "http://www.mogujie.com/", withFrequency: 0)
+//        self.coachMarksView.loadGuideImageItem([["image":UIImage(named: "smile_face")]])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+          self.coachMarksView.start()
+        })
+    }
+    
+    private func createGuideView() -> AwesomeIntroGuideView {
+        let guideView = AwesomeIntroGuideView(frame: UIScreen.main.bounds)
+//        let basicView = UIView()
+//        basicView.alpha = 0.3
+//        basicView.backgroundColor = .yellow
+//        guideView.addSubview(basicView)
+//        basicView.mas_makeConstraints { (make) in
+//              _ = make?.edges.equalTo()(guideView)
+//        }
+        guideView.completionBlock = { guideView in
+            print("1")
+        }
+        guideView.willCompletionBlock = { guideView in
+            print("2")
+        }
+        guideView.willNavgateBlock = { (guideView, index) in
+            print("will nav back:\(index)")
+            if (index == 0) {
+//                let label = UILabel()
+//                label.text = "123"
+//                label.textColor = .white
+                let animatedLabel = ZCAnimatedLabel()
+                animatedLabel.animationDuration = 3
+                animatedLabel.appearDirection = .fromCenter
+                animatedLabel.attributedString = NSAttributedString(string: "排行榜", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20), NSAttributedString.Key.foregroundColor:UIColor.white])
+                animatedLabel.preferredMaxLayoutWidth = 65
+                animatedLabel.layerBased = false
+                DispatchQueue.main.async {
+                    self.coachMarksView.addSubview(animatedLabel)
+                    self.coachMarksView.bringSubviewToFront(animatedLabel)
+                    animatedLabel.mas_makeConstraints({ (mask) in
+                        _ = mask?.centerX.equalTo()(self.coachMarksView)
+                        _ = mask?.centerY.equalTo()(self.coachMarksView)
+                    })
+                }
+            }
+        }
+        guideView.didNavgateBlock = { (guideView, index) in
+           print("did nav back:\(index)")
+        }
+        guideView.loadType = .introLoad_Sync
+        return guideView
     }
     
     //MARK: IBActions
