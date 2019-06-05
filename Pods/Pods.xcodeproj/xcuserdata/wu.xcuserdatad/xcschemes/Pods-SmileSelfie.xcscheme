@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ACA76594085DD023DFA798926231B447"
+               BlueprintIdentifier = "0EEA992EE817FE4919F4CA6C72083B83"
                BuildableName = "Pods_SmileSelfie.framework"
                BlueprintName = "Pods-SmileSelfie"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ACA76594085DD023DFA798926231B447"
+            BlueprintIdentifier = "0EEA992EE817FE4919F4CA6C72083B83"
             BuildableName = "Pods_SmileSelfie.framework"
             BlueprintName = "Pods-SmileSelfie"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -11,4 +11,5 @@ target 'SmileSelfie' do
   pod 'AwesomeIntroGuideView'
   pod 'Masonry'
   pod 'ZCAnimatedLabel'
+  pod 'DWAnimatedLabel'
 end

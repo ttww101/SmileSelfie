@@ -14,6 +14,7 @@ import YPImagePicker
 import AwesomeIntroGuideView
 import Masonry
 import ZCAnimatedLabel
+import DWAnimatedLabel
 
 class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     //UI
@@ -82,6 +83,9 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     //guide
     var coachMarksView: AwesomeIntroGuideView = AwesomeIntroGuideView()
     var guideViewArr: [UIView] = []
+    var firstGuideLabel: DWAnimatedLabel = DWAnimatedLabel(frame: CGRect(x: 0, y: UIScreen.main.bounds.height/2 - 25, width: UIScreen.main.bounds.size.width, height: 50))
+    var dwAnimatedLabel_1: DWAnimatedLabel = DWAnimatedLabel(frame: CGRect(x: 20, y: 44, width: UIScreen.main.bounds.size.width, height: 150))
+    var dwAnimatedLabel_2: DWAnimatedLabel = DWAnimatedLabel(frame: CGRect(x: 20, y: 44, width: UIScreen.main.bounds.size.width, height: 150))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,8 +94,11 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.displayCoachView()
+        if (UserDefaults.standard.value(forKey: "first_time_open_app") == nil) {
+            UserDefaults.standard.setValue(true, forKey: "first_time_open_app")
+            DispatchQueue.main.async {
+                self.displayCoachView()
+            }
         }
     }
     
@@ -124,19 +131,28 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.smilingCountDownLabel.text = ""
         
         self.coachMarksView = self.createGuideView()
-        self.coachMarksView.insetSpacing = -10
-        self.coachMarksView.isEnableSkipButton = true
-        self.coachMarksView.isEnableContinueLabel = false
-        self.coachMarksView.animationDuration = 0.5
-        self.view.addSubview(self.coachMarksView)
-        let label = UILabel(frame: .zero)
-        label.text = "123"
-        label.sizeToFit()
-        self.navigationItem.titleView = label
-//        self.view.backgroundColor = .white
     }
     
     private func displayCoachView() {
+        self.view.addSubview(self.coachMarksView)
+        
+        //first guide label
+        self.firstGuideLabel.textColor = .hexColor(with: "28D8B8")
+        self.firstGuideLabel.textAlignment = .center
+        self.firstGuideLabel.animationType = .typewriter
+        self.firstGuideLabel.placeHolderColor = .blue
+        self.firstGuideLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        self.view.addSubview(self.firstGuideLabel)
+        self.firstGuideLabel.mas_makeConstraints({ (mask) in
+            _ = mask?.centerX.equalTo()(self.view)
+            _ = mask?.centerY.equalTo()(self.view)
+            _ = mask?.leading.equalTo()(self.view)?.offset()(16)
+            _ = mask?.trailing.equalTo()(self.view)?.offset()(-16)
+        })
+        self.firstGuideLabel.text = "Guide Start!"
+        self.firstGuideLabel.startAnimation(duration: 2, nil)
+        
+        self.guideViewArr.append(self.firstGuideLabel)
         self.guideViewArr.append(self.timeIntervalCircleMenuButton)
         self.guideViewArr.append(self.flashButton)
         self.guideViewArr.append(self.modeButton)
@@ -145,53 +161,146 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.guideViewArr.append(self.camChangeButton)
         self.guideViewArr.append(self.manualShotButton)
         self.coachMarksView.loadMarks(self.guideViewArr)
-        self.coachMarksView.guideShape = .circle
 //        self.coachMarksView.loadGuideImageUrl("https://s10.mogucdn.com/p1/161027/idid_ifqtantemfstmzdemizdambqgyyde_483x337.png", with: CGPoint(x: 70, y: 100), redirectURL: "http://www.mogujie.com/", withFrequency: 0)
 //        self.coachMarksView.loadGuideImageItem([["image":UIImage(named: "smile_face")]])
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-          self.coachMarksView.start()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            self.coachMarksView.start()
         })
+        self.collectionButton.isUserInteractionEnabled = false
+        self.manualShotButton.isUserInteractionEnabled = false
     }
     
     private func createGuideView() -> AwesomeIntroGuideView {
         let guideView = AwesomeIntroGuideView(frame: UIScreen.main.bounds)
-//        let basicView = UIView()
-//        basicView.alpha = 0.3
-//        basicView.backgroundColor = .yellow
-//        guideView.addSubview(basicView)
-//        basicView.mas_makeConstraints { (make) in
-//              _ = make?.edges.equalTo()(guideView)
-//        }
+        guideView.insetSpacing = -8
+        guideView.isEnableSkipButton = true
+        guideView.isEnableContinueLabel = false
+        guideView.animationDuration = 0.5
+        guideView.guideShape = .square
+        guideView.frame = CGRect(origin: self.view.center, size: CGSize.zero)
+        guideView.frame = UIScreen.main.bounds
+        
+        //text guide
+        self.dwAnimatedLabel_1.textColor = .white
+        self.dwAnimatedLabel_1.animationType = .typewriter
+        self.dwAnimatedLabel_1.placeHolderColor = .blue
+        self.dwAnimatedLabel_1.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        guideView.addSubview(self.dwAnimatedLabel_1)
+        self.dwAnimatedLabel_1.mas_makeConstraints({ (mask) in
+            _ = mask?.centerX.equalTo()(guideView)
+            _ = mask?.centerY.equalTo()(guideView)
+            _ = mask?.leading.equalTo()(guideView)?.offset()(16)
+            _ = mask?.trailing.equalTo()(guideView)?.offset()(-16)
+        })
+        self.dwAnimatedLabel_2.textColor = .white
+        self.dwAnimatedLabel_2.animationType = .typewriter
+        self.dwAnimatedLabel_2.placeHolderColor = .blue
+        self.dwAnimatedLabel_2.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        guideView.addSubview(self.dwAnimatedLabel_2)
+        self.dwAnimatedLabel_2.mas_makeConstraints({ (mask) in
+            _ = mask?.top.equalTo()(self.dwAnimatedLabel_1.mas_bottom)
+            _ = mask?.leading.equalTo()(guideView)?.offset()(16)
+            _ = mask?.trailing.equalTo()(guideView)?.offset()(-16)
+        })
         guideView.completionBlock = { guideView in
-            print("1")
+            self.collectionButton.isUserInteractionEnabled = true
+            self.manualShotButton.isUserInteractionEnabled = true
         }
         guideView.willCompletionBlock = { guideView in
-            print("2")
+            let startLabel = DWAnimatedLabel(frame: CGRect(x: 20, y: 44, width: UIScreen.main.bounds.size.width, height: 150))
+            startLabel.textColor = .hexColor(with: "F1C40F")
+            startLabel.textAlignment = .center
+            startLabel.animationType = .typewriter
+            startLabel.placeHolderColor = .blue
+            startLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            self.view.addSubview(startLabel)
+            startLabel.mas_makeConstraints({ (mask) in
+                _ = mask?.centerX.equalTo()(self.view)
+                _ = mask?.centerY.equalTo()(self.view)
+                _ = mask?.leading.equalTo()(self.view)?.offset()(16)
+                _ = mask?.trailing.equalTo()(self.view)?.offset()(-16)
+            })
+            startLabel.text = "Start Using Smile Selfie!"
+            startLabel.startAnimation(duration: 2, {
+                UIView.animate(withDuration: 1.5, animations: {
+                    startLabel.alpha = 0
+                }, completion: { completion in
+                    startLabel.removeFromSuperview()
+                })
+            })
         }
         guideView.willNavgateBlock = { (guideView, index) in
-            print("will nav back:\(index)")
+            print("will nav")
             if (index == 0) {
-//                let label = UILabel()
-//                label.text = "123"
-//                label.textColor = .white
-                let animatedLabel = ZCAnimatedLabel()
-                animatedLabel.animationDuration = 3
-                animatedLabel.appearDirection = .fromCenter
-                animatedLabel.attributedString = NSAttributedString(string: "排行榜", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20), NSAttributedString.Key.foregroundColor:UIColor.white])
-                animatedLabel.preferredMaxLayoutWidth = 65
-                animatedLabel.layerBased = false
-                DispatchQueue.main.async {
-                    self.coachMarksView.addSubview(animatedLabel)
-                    self.coachMarksView.bringSubviewToFront(animatedLabel)
-                    animatedLabel.mas_makeConstraints({ (mask) in
-                        _ = mask?.centerX.equalTo()(self.coachMarksView)
-                        _ = mask?.centerY.equalTo()(self.coachMarksView)
-                    })
-                }
+                guideView.guideShape = .circle
+            } else if (index == 1) {
+                self.firstGuideLabel.removeFromSuperview()
             }
+            guideView.isUserInteractionEnabled = false
         }
         guideView.didNavgateBlock = { (guideView, index) in
-           print("did nav back:\(index)")
+            guideView.isUserInteractionEnabled = true
+            print("did nav")
+            if (index == 1) {
+                guideView.isUserInteractionEnabled = false
+                self.dwAnimatedLabel_1.text = "This is a manual/auto button."
+                self.dwAnimatedLabel_1.startAnimation(duration: 3, {
+                    self.dwAnimatedLabel_2.text = "Which decides if Auto capture smile."
+                    self.dwAnimatedLabel_2.startAnimation(duration: 3, {
+                        guideView.isUserInteractionEnabled = true
+                    })
+                })
+            } else if (index == 2) {
+                guideView.isUserInteractionEnabled = false
+                self.dwAnimatedLabel_1.text = "Control Flash Light."
+                self.dwAnimatedLabel_1.startAnimation(duration: 3, {
+                    guideView.isUserInteractionEnabled = true
+                })
+                self.dwAnimatedLabel_2.text = " "
+                self.dwAnimatedLabel_2.startAnimation(duration: 0.1, nil)
+            } else if (index == 3) {
+                guideView.isUserInteractionEnabled = false
+                self.dwAnimatedLabel_1.text = "Normal/Outline mode for u."
+                self.dwAnimatedLabel_1.startAnimation(duration: 3, {
+                    guideView.isUserInteractionEnabled = true
+                })
+            } else if (index == 4) {
+                guideView.isUserInteractionEnabled = false
+                self.dwAnimatedLabel_1.text = "U can take live photo."
+                self.dwAnimatedLabel_1.startAnimation(duration: 3, {
+                    self.dwAnimatedLabel_2.text = "Make ur smile lively beauty."
+                    self.dwAnimatedLabel_2.startAnimation(duration: 3, {
+                        guideView.isUserInteractionEnabled = true
+                    })
+                })
+            } else if (index == 5) {
+                guideView.isUserInteractionEnabled = false
+                self.dwAnimatedLabel_1.text = "This is gallery contains kinds filter."
+                self.dwAnimatedLabel_1.startAnimation(duration: 3, {
+                    guideView.isUserInteractionEnabled = true
+                })
+                self.dwAnimatedLabel_2.text = " "
+                self.dwAnimatedLabel_2.startAnimation(duration: 0.1, nil)
+            } else if (index == 6) {
+                guideView.isUserInteractionEnabled = false
+                self.dwAnimatedLabel_1.text = "Change ur camera."
+                self.dwAnimatedLabel_2.text = " "
+                self.dwAnimatedLabel_2.startAnimation(duration: 0.1, nil)
+                self.dwAnimatedLabel_1.startAnimation(duration: 2, {
+                    self.dwAnimatedLabel_2.text = "If u need."
+                    self.dwAnimatedLabel_2.startAnimation(duration: 2, {
+                        guideView.isUserInteractionEnabled = true
+                    })
+                })
+            } else if (index == 7) {
+                guideView.isUserInteractionEnabled = false
+                self.dwAnimatedLabel_1.text = "U can also take a photo by ur own."
+                self.dwAnimatedLabel_1.startAnimation(duration: 3.5, {
+                    guideView.isUserInteractionEnabled = true
+                })
+                self.dwAnimatedLabel_2.text = " "
+                self.dwAnimatedLabel_2.startAnimation(duration: 0.1, nil)
+            }
         }
         guideView.loadType = .introLoad_Sync
         return guideView

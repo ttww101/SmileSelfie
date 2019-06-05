@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4146F524BA44B9A85916C365A8D9BCB"
-               BuildableName = "PryntTrimmerView.framework"
-               BlueprintName = "PryntTrimmerView"
+               BlueprintIdentifier = "3C691E5612BD610B94ACA3BCA13DA0BA"
+               BuildableName = "DWAnimatedLabel.framework"
+               BlueprintName = "DWAnimatedLabel"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
