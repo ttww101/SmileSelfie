@@ -10,7 +10,6 @@ target 'SmileSelfie' do
   pod 'YPImagePicker'
   pod 'AwesomeIntroGuideView'
   pod 'Masonry'
-  pod 'ZCAnimatedLabel'
   pod 'DWAnimatedLabel'
   pod 'JPush'
   pod 'JAnalytics'

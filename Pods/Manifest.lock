@@ -13,7 +13,6 @@ PODS:
   - YPImagePicker (3.5.3):
     - PryntTrimmerView (~> 3.0.0)
     - SteviaLayout (~> 4.4.1)
-  - ZCAnimatedLabel (0.0.4)
 
 DEPENDENCIES:
   - AwesomeIntroGuideView
@@ -23,7 +22,6 @@ DEPENDENCIES:
   - JPush
   - Masonry
   - YPImagePicker
-  - ZCAnimatedLabel
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -37,7 +35,6 @@ SPEC REPOS:
     - PryntTrimmerView
     - SteviaLayout
     - YPImagePicker
-    - ZCAnimatedLabel
 
 SPEC CHECKSUMS:
   AwesomeIntroGuideView: 0f520530f21f98b5a3296d0229bdbc5d8c7aa3f0
@@ -50,8 +47,7 @@ SPEC CHECKSUMS:
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
-  ZCAnimatedLabel: 519b688bef4403fd356bc785f9b61cdfd8e6472d
 
-PODFILE CHECKSUM: 1ebfe9ca47aebd31cb2fba28fd3a76478442dc04
+PODFILE CHECKSUM: 68c7805692802d9859463f3d8f9c8764b34321be
 
 COCOAPODS: 1.5.3

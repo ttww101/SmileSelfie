@@ -13,7 +13,6 @@ import CircleMenu
 import YPImagePicker
 import AwesomeIntroGuideView
 import Masonry
-import ZCAnimatedLabel
 import DWAnimatedLabel
 
 class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
