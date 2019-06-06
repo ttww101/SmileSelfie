@@ -36,6 +36,7 @@
 		9439C96F229E2F3C0009CF8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9439C972229E2F3C0009CF8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9439C974229E2F3C0009CF8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		945E898222A8D13F00DFD88E /* SmileSelfie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmileSelfie-Bridging-Header.h"; sourceTree = "<group>"; };
 		9482554D229E358D00ADAFB6 /* SmileSelfieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileSelfieViewController.swift; sourceTree = "<group>"; };
 		94825551229E3E4900ADAFB6 /* CameraCaptureOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureOutput.swift; sourceTree = "<group>"; };
 		94825554229E43B300ADAFB6 /* FaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 				9439C96F229E2F3C0009CF8D /* Assets.xcassets */,
 				9439C971229E2F3C0009CF8D /* LaunchScreen.storyboard */,
 				9439C974229E2F3C0009CF8D /* Info.plist */,
+				945E898222A8D13F00DFD88E /* SmileSelfie-Bridging-Header.h */,
 			);
 			path = SmileSelfie;
 			sourceTree = "<group>";
@@ -449,14 +451,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RG55XLA874;
 				INFOPLIST_FILE = SmileSelfie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.amG.smileselfie.SmileSelfie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/wu/Developer/SmileSelfie/SmileSelfie/SmileSelfie-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -468,14 +472,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RG55XLA874;
 				INFOPLIST_FILE = SmileSelfie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.amG.smileselfie.SmileSelfie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/wu/Developer/SmileSelfie/SmileSelfie/SmileSelfie-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

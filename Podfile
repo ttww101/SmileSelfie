@@ -12,4 +12,6 @@ target 'SmileSelfie' do
   pod 'Masonry'
   pod 'ZCAnimatedLabel'
   pod 'DWAnimatedLabel'
+  pod 'JPush'
+  pod 'JAnalytics'
 end

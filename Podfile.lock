@@ -2,6 +2,11 @@ PODS:
   - AwesomeIntroGuideView (1.0.9)
   - CircleMenu (4.0.1)
   - DWAnimatedLabel (1.2)
+  - JAnalytics (1.2.1):
+    - JCore (~> 1.2.0)
+  - JCore (1.2.6)
+  - JPush (3.1.2):
+    - JCore (~> 1.2.6)
   - Masonry (1.1.0)
   - PryntTrimmerView (3.0.0)
   - SteviaLayout (4.4.4)
@@ -14,6 +19,8 @@ DEPENDENCIES:
   - AwesomeIntroGuideView
   - CircleMenu
   - DWAnimatedLabel
+  - JAnalytics
+  - JPush
   - Masonry
   - YPImagePicker
   - ZCAnimatedLabel
@@ -23,6 +30,9 @@ SPEC REPOS:
     - AwesomeIntroGuideView
     - CircleMenu
     - DWAnimatedLabel
+    - JAnalytics
+    - JCore
+    - JPush
     - Masonry
     - PryntTrimmerView
     - SteviaLayout
@@ -33,12 +43,15 @@ SPEC CHECKSUMS:
   AwesomeIntroGuideView: 0f520530f21f98b5a3296d0229bdbc5d8c7aa3f0
   CircleMenu: d846569acbe805b75cef5793056707224240db64
   DWAnimatedLabel: 2c5742ea5584187592508e5cee0a9b0e8e8c6af0
+  JAnalytics: a65f716b383ad470aacd63a7af1984746cc3e06f
+  JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
+  JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
   ZCAnimatedLabel: 519b688bef4403fd356bc785f9b61cdfd8e6472d
 
-PODFILE CHECKSUM: 38bf9584a5d2e6383db4ff46891fb5b6de4c4923
+PODFILE CHECKSUM: 1ebfe9ca47aebd31cb2fba28fd3a76478442dc04
 
 COCOAPODS: 1.5.3
