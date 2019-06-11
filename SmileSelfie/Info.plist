@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Let us save ur happy sound!</string>
+	<string>让微笑相机读取您的麦克风，储存你生动活泼 Live Photo</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Let us save ur smile :)</string>
+	<string>让微笑相机加入您的相片图库，储存您的美丽笑容</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Let us display photo for u</string>
+	<string>让微笑相机存取您的相片图库，查看您的微笑自拍</string>
+	<key>NSCameraUsageDescription</key>
+	<string>让微笑相机加入您的照相机，看见您的笑容有多么美丽</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -26,8 +28,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Needs camera</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
