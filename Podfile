@@ -13,4 +13,5 @@ target 'SmileSelfie' do
   pod 'DWAnimatedLabel'
   pod 'JPush'
   pod 'JAnalytics'
+  pod 'AVOSCloud'
 end

@@ -1,4 +1,5 @@
 PODS:
+  - AVOSCloud (11.5.2)
   - AwesomeIntroGuideView (1.0.9)
   - CircleMenu (4.0.1)
   - DWAnimatedLabel (1.2)
@@ -15,6 +16,7 @@ PODS:
     - SteviaLayout (~> 4.4.1)
 
 DEPENDENCIES:
+  - AVOSCloud
   - AwesomeIntroGuideView
   - CircleMenu
   - DWAnimatedLabel
@@ -25,6 +27,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AVOSCloud
     - AwesomeIntroGuideView
     - CircleMenu
     - DWAnimatedLabel
@@ -37,6 +40,7 @@ SPEC REPOS:
     - YPImagePicker
 
 SPEC CHECKSUMS:
+  AVOSCloud: b3cb1ed20d46c0d55083363522cb2ea593d51ac7
   AwesomeIntroGuideView: 0f520530f21f98b5a3296d0229bdbc5d8c7aa3f0
   CircleMenu: d846569acbe805b75cef5793056707224240db64
   DWAnimatedLabel: 2c5742ea5584187592508e5cee0a9b0e8e8c6af0
@@ -48,6 +52,6 @@ SPEC CHECKSUMS:
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 68c7805692802d9859463f3d8f9c8764b34321be
+PODFILE CHECKSUM: d7fef68548f8c1ae4ab339c2fbb7e1cd83cb686c
 
 COCOAPODS: 1.5.3

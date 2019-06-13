@@ -14,6 +14,7 @@ import YPImagePicker
 import AwesomeIntroGuideView
 import Masonry
 import DWAnimatedLabel
+import AVOSCloud
 
 class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     //UI
@@ -70,10 +71,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     var smileTimeInterval: Int = 66666
     var timer: DispatchSourceTimer? = nil
     var timerTimeInterval: Int = 66666
-    
-    //imagePicker
-    var imagePicker: UIImagePickerController!
-    
+
     //button control feature
     var isFlash: Bool = false
     var isDrawFaceOutLine: Bool = false
@@ -160,8 +158,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
         self.guideViewArr.append(self.camChangeButton)
         self.guideViewArr.append(self.manualShotButton)
         self.coachMarksView.loadMarks(self.guideViewArr)
-//        self.coachMarksView.loadGuideImageUrl("https://s10.mogucdn.com/p1/161027/idid_ifqtantemfstmzdemizdambqgyyde_483x337.png", with: CGPoint(x: 70, y: 100), redirectURL: "http://www.mogujie.com/", withFrequency: 0)
-//        self.coachMarksView.loadGuideImageItem([["image":UIImage(named: "smile_face")]])
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             self.coachMarksView.start()
         })
@@ -206,6 +203,7 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
             self.manualShotButton.isUserInteractionEnabled = true
         }
         guideView.willCompletionBlock = { guideView in
+            self.firstGuideLabel.removeFromSuperview()
             let startLabel = DWAnimatedLabel(frame: CGRect(x: 20, y: 44, width: UIScreen.main.bounds.size.width, height: 150))
             startLabel.textColor = .hexColor(with: "F1C40F")
             startLabel.textAlignment = .center
