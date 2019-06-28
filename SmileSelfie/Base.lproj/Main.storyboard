@@ -119,7 +119,7 @@
                                 <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" image="flash_off"/>
-                                <state key="selected" image="flash_on">
+                                <state key="selected">
                                     <color key="titleShadowColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -260,7 +260,6 @@
     <resources>
         <image name="cam_change" width="48" height="48"/>
         <image name="flash_off" width="50" height="50"/>
-        <image name="flash_on" width="50" height="50"/>
         <image name="gallery" width="48" height="48"/>
         <image name="manual" width="50" height="50"/>
         <image name="manual_shot" width="50" height="50"/>

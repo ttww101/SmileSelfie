@@ -73,7 +73,23 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     var timerTimeInterval: Int = 66666
 
     //button control feature
-    var isFlash: Bool = false
+    var flashState: AVCaptureDevice.FlashMode = .off {
+        didSet {
+            switch self.flashState {
+            case .off:
+                self.flashButton.setImage(UIImage(named: "flash_off"), for: .normal)
+                break
+            case .auto:
+                self.flashButton.setImage(UIImage(named: "flash_auto"), for: .normal)
+                break
+            case .on:
+                self.flashButton.setImage(UIImage(named: "flash_on"), for: .normal)
+                break
+            @unknown default:
+                self.flashButton.setImage(UIImage(named: "flash_off"), for: .normal)
+            }
+        }
+    }
     var isDrawFaceOutLine: Bool = false
     var isAuto: Bool = false
     
@@ -320,12 +336,24 @@ class SmileSelfieViewController: UIViewController, CircleMenuDelegate {
     }
     
     @IBAction func flashButtonDidTouchupInside(_ sender: UIButton) {
-        self.flashButton.isSelected.toggle()
-        if sender.isSelected {
-            self.cameraOutput.flashMode = .on
-        } else {
-            self.cameraOutput.flashMode = .off
+        switch self.flashState {
+        case .off:
+            self.flashState = .auto
+            break
+            
+        case .auto:
+            self.flashState = .on
+            break
+            
+        case .on:
+            self.flashState = .off
+            break
+            
+        @unknown default:
+            self.flashState = .off
+            break
         }
+        self.cameraOutput.flashMode = self.flashState
     }
     
     @IBAction func modeButtonDidTouchupInside(_ sender: Any) {
