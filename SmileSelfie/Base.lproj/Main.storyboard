@@ -29,7 +29,7 @@
         <!--Delegate-->
         <scene sceneID="bWD-U8-6Sh">
             <objects>
-                <viewController storyboardIdentifier="SmileSelfieViewController" id="Ejf-9c-VpQ" customClass="SmileSelfieViewController" customModule="SmileSelfie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SmileSelfieViewController" extendedLayoutIncludesOpaqueBars="YES" id="Ejf-9c-VpQ" customClass="SmileSelfieViewController" customModule="SmileSelfie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JoO-wr-gb8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
